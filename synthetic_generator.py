@@ -7,20 +7,54 @@ import os
 FIRST_NAMES_MALE = [
     "Juan Miguel", "Jose Mari", "Mark Gil", "Junjun", "Dexter", "John Paul", "Carlo", "Ramon", 
     "Kenneth", "Christian", "Reynaldo", "Alvin", "Michael", "Francis", "Jomar", "Sherwin", 
-    "Edgardo", "Melvin", "Gerald", "Jerome", "Rogelio", "Santi", "Dante", "Elmer", "Gabriel"
+    "Edgardo", "Melvin", "Gerald", "Jerome", "Rogelio", "Santi", "Dante", "Elmer", "Gabriel",
+    "Aldrin", "Alexander", "Alfredo", "Allan", "Anthony", "Antonio", "Arnel", "Arthur", 
+    "Benigno", "Benjamin", "Bernardo", "Bobby", "Bonifacio", "Bryan", "Carlito", "Cesar", 
+    "Daniel", "Danilo", "David", "Dennis", "Dominador", "Eduardo", "Efren", "Emilio", 
+    "Emmanuel", "Eric", "Ernesto", "Esteban", "Eugene", "Federico", "Ferdinand", "Fernando", 
+    "Felipe", "Freddie", "Gary", "George", "Gil", "Gilbert", "Gregorio", "Hector", "Henry", 
+    "Hernando", "Ian", "Ignacio", "Ismael", "Jaime", "Jason", "Jeffrey", "Jesus", "Joel", 
+    "Jonathan", "Jorge", "Joseph", "Julius", "Jun", "Julio", "Leo", "Leonardo", "Leoncio", 
+    "Luis", "Manuel", "Mario", "Nelson", "Nestor", "Noel", "Orlando", "Oscar", "Patrick", 
+    "Paul", "Pedro", "Philip", "Rafael", "Renato", "Ricardo", "Roberto", "Rodrigo", "Rolando", 
+    "Romeo", "Roy", "Ruben", "Salvador", "Santiago", "Tomas", "Victor", "Walter", "Wilfredo"
 ]
 
 FIRST_NAMES_FEMALE = [
     "Maria Clara", "Rhea Mae", "Angelica", "Mary Joy", "Kassandra", "Christine", "Sarah", "Jonalyn", 
     "Michelle", "Princess", "Cherry", "Gwendolyn", "Irish", "Kimberly", "Lovely", "Rachelle", 
-    "Shiela", "Analyn", "Bernadette", "Glenda", "Jocelyn", "Katrina", "Patricia", "Liezel", "Therese"
+    "Shiela", "Analyn", "Bernadette", "Glenda", "Jocelyn", "Katrina", "Patricia", "Liezel", "Therese",
+    "Aida", "Alicia", "Alma", "Amalia", "Ana", "Antonia", "Aurora", "Beatriz", "Belinda", "Bella", 
+    "Carina", "Carmen", "Carolina", "Cecilia", "Celia", "Clarissa", "Concepcion", "Corazon", 
+    "Cristina", "Cynthia", "Daisy", "Delia", "Diana", "Divina", "Dolores", "Elena", "Elisa", 
+    "Elizabeth", "Elsa", "Elvira", "Emilia", "Esperanza", "Estela", "Evelyn", "Fe", "Felicia", 
+    "Flora", "Flordeliza", "Florence", "Gloria", "Grace", "Helen", "Imelda", "Irene", "Isabel", 
+    "Jacqueline", "Jane", "Janet", "Jean", "Jenny", "Jessica", "Josefina", "Joy", "Judith", 
+    "Julia", "Juliet", "Karen", "Laura", "Leonora", "Leticia", "Lilian", "Linda", "Liza", 
+    "Lorna", "Lourdes", "Lucia", "Luz", "Lydia", "Mabel", "Magdalena", "Maida", "Maricel", 
+    "Marie", "Marilyn", "Marina", "Marites", "Martha", "Melba", "Mercedes", "Myrna", "Nancy", 
+    "Nelia", "Norma", "Ofelia", "Olivia", "Patricia", "Perla", "Rebecca", "Remedios", "Rita", 
+    "Rosa", "Rosalinda", "Rosario", "Rowena", "Ruby", "Ruth", "Sandra", "Sharon", "Shirley", 
+    "Sonia", "Sylvia", "Teresa", "Valerie", "Victoria", "Virginia", "Vivian", "Yolanda"
 ]
 
 LAST_NAMES = [
     "Dela Cruz", "Santos", "Buot", "Bacalso", "Fernandez", "Alcantara", "Cabahug", "Ceniza", 
     "Abella", "Gomez", "Ramos", "Bontuyan", "Villaver", "Suarez", "Tagalog", "Ondoy", 
-    "Chan", "Lim", "Go", "Ybañez", "Villamor", "Quisumbing", "Arong", "Ruiz", "Gonzales"
+    "Chan", "Lim", "Go", "Ybañez", "Villamor", "Quisumbing", "Arong", "Ruiz", "Gonzales",
+    "Almendras", "Abellanosa", "Aranas", "Abarquez", "Andrade", "Aquino", "Arellano", 
+    "Bacolod", "Bascon", "Belciña", "Baring", "Barros", "Bautista", "Caballero", "Cañete", 
+    "Castillo", "Castro", "Cortes", "Cuenco", "Davide", "Diaz", "Dumaguete", "Espina", 
+    "Estrella", "Flores", "Garcia", "Geronimo", "Guerrero", "Gullas", "Gutierrez", 
+    "Hernandez", "Herrera", "Javier", "Jimenez", "Ledesma", "Lopez", "Mactan", "Madarang", 
+    "Mangubat", "Martinez", "Medina", "Mendoza", "Mercado", "Miranda", "Montejo", "Morales", 
+    "Navarro", "Ochoa", "Ortega", "Osmeña", "Pacaña", "Padilla", "Perez", "Pineda", 
+    "Radaza", "Regner", "Reyes", "Rivera", "Robles", "Rodriguez", "Rojas", "Romero", 
+    "Salazar", "Santiago", "Sarmiento", "Seno", "Silva", "Sotto", "Tan", "Teves", "Torres", 
+    "Valdez", "Vargas", "Velasco", "Vergara", "Yap"
 ]
+
+AGES = [18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30]
 
 COURSES = [
     "BS Information Technology", "BS Computer Science", "BS Business Administration", 
@@ -202,7 +236,7 @@ def generate_synthetic_record(scanned_questions, selected_city="Random", selecte
             elif "section" in label_lower or "class" in label_lower:
                 record[label] = section
             elif "age" in label_lower:
-                record[label] = str(random.randint(18, 25))
+                record[label] = str(random.choice(AGES))
             elif "phone" in label_lower or "mobile" in label_lower or "contact" in label_lower:
                 record[label] = f"0917{random.randint(1000000, 9999999)}"
             elif "student id" in label_lower or "id number" in label_lower or "student no" in label_lower:
