@@ -1,0 +1,597 @@
+[2026-07-01 02:19:46] [INFO] Application initialized. Ready to automate.
+[2026-07-01 02:23:16] [INFO] Application initialized. Ready to automate.
+[2026-07-01 02:23:32] [INFO] Launching Chrome/Chromium browser...
+[2026-07-01 02:23:34] [INFO] Navigating to form: https://docs.google.com/forms/d/e/1FAIpQLScZFpP_KlYaIdesBnY2PpqkQDYCqtq_LlHrLohaEBuEbok6RQ/viewform?usp=dialog
+[2026-07-01 02:23:40] [INFO] Scan complete. Form Title: 'A survey about "Comparison On The Academic Performance Of Abm And Non – ABM Custom Students In University Of Cebu – Lapu-Lapu And Mandaue"'. Detected 5 questions.
+[2026-07-01 02:23:40] [INFO] Generated raw data template in the textbox.
+[2026-07-01 02:23:40] [INFO] No saved template. Will use auto-matching on fill.
+[2026-07-01 02:24:07] [INFO] Starting fill. Total records: 1. Batch Mode: False
+[2026-07-01 02:24:07] [INFO] --- Filling Record 1/1 ---
+[2026-07-01 02:24:07] [WARNING] Record 1 is missing required fields: ['Name\n(Last name, First name, M.I.)\n(optional)']
+[2026-07-01 02:24:07] [INFO] Filling: 'Gender' -> '(Required) [Options: Male, Female]'
+[2026-07-01 02:24:07] [ERROR] Automation thread encountered an error: cannot switch to a different thread (which happens to have exited)
+[2026-07-01 02:24:17] [INFO] Cleared all fields.
+[2026-07-01 02:24:25] [INFO] Navigating to form: https://docs.google.com/forms/d/e/1FAIpQLScZFpP_KlYaIdesBnY2PpqkQDYCqtq_LlHrLohaEBuEbok6RQ/viewform?usp=dialog
+[2026-07-01 02:24:25] [ERROR] Scan failed: cannot switch to a different thread (which happens to have exited)
+[2026-07-01 02:24:28] [INFO] Cleared all fields.
+[2026-07-01 02:24:29] [INFO] Cleared all fields.
+[2026-07-01 02:24:32] [INFO] Navigating to form: https://docs.google.com/forms/d/e/1FAIpQLScZFpP_KlYaIdesBnY2PpqkQDYCqtq_LlHrLohaEBuEbok6RQ/viewform?usp=dialog
+[2026-07-01 02:24:32] [ERROR] Scan failed: cannot switch to a different thread (which happens to have exited)
+[2026-07-01 02:24:37] [INFO] Cleared all fields.
+[2026-07-01 02:24:43] [INFO] Navigating to form: https://docs.google.com/forms/d/e/1FAIpQLScZFpP_KlYaIdesBnY2PpqkQDYCqtq_LlHrLohaEBuEbok6RQ/viewform?usp=dialog
+[2026-07-01 02:24:43] [ERROR] Scan failed: cannot switch to a different thread (which happens to have exited)
+[2026-07-01 02:25:44] [INFO] Closing browser...
+[2026-07-01 02:25:48] [INFO] Application initialized. Ready to automate.
+[2026-07-01 02:26:01] [INFO] Launching Chrome/Chromium browser...
+[2026-07-01 02:26:02] [INFO] Navigating to form: https://docs.google.com/forms/d/e/1FAIpQLScZFpP_KlYaIdesBnY2PpqkQDYCqtq_LlHrLohaEBuEbok6RQ/viewform?usp=dialog
+[2026-07-01 02:26:09] [INFO] Scan complete. Form Title: 'A survey about " Comparison On The Academic Performance Of Abm And Non – ABM Custom Students In University Of Cebu – Lapu-Lapu And Mandaue "'. Detected 5 questions.
+[2026-07-01 02:26:09] [INFO] Generated raw data template in the textbox.
+[2026-07-01 02:26:09] [INFO] No saved template. Will use auto-matching on fill.
+[2026-07-01 02:26:28] [INFO] Closing browser...
+[2026-07-01 02:28:22] [INFO] Application initialized. Ready to automate.
+[2026-07-01 02:28:35] [INFO] Launching Chrome/Chromium browser...
+[2026-07-01 02:28:36] [INFO] Navigating to form: https://docs.google.com/forms/d/e/1FAIpQLScZFpP_KlYaIdesBnY2PpqkQDYCqtq_LlHrLohaEBuEbok6RQ/viewform?usp=dialog
+[2026-07-01 02:28:42] [INFO] Scan complete. Form Title: 'A survey about "Comparison On The Academic Performance Of Abm And Non – ABM Custom Students In University Of Cebu – Lapu-Lapu And Mandaue"'. Detected 5 questions.
+[2026-07-01 02:28:42] [INFO] Generated raw data template in the textbox.
+[2026-07-01 02:28:42] [INFO] No saved template. Will use auto-matching on fill.
+[2026-07-01 02:29:59] [INFO] Closing browser...
+[2026-07-01 02:30:02] [INFO] Application initialized. Ready to automate.
+[2026-07-01 02:30:12] [INFO] Launching Chrome/Chromium browser...
+[2026-07-01 02:30:13] [INFO] Navigating to form: https://docs.google.com/forms/d/e/1FAIpQLScZFpP_KlYaIdesBnY2PpqkQDYCqtq_LlHrLohaEBuEbok6RQ/viewform?usp=dialog
+[2026-07-01 02:30:19] [INFO] Scanning Page 1...
+[2026-07-01 02:30:19] [INFO] Scan complete. Form Title: 'A survey about "Comparison On The Academic Performance Of Abm And Non – ABM Custom Students In University Of Cebu – Lapu-Lapu And Mandaue"'. Detected 5 questions.
+[2026-07-01 02:30:19] [INFO] Generated raw data template in the textbox.
+[2026-07-01 02:30:19] [INFO] No saved template. Will use auto-matching on fill.
+[2026-07-01 02:32:14] [INFO] Starting fill. Total records: 1. Batch Mode: False
+[2026-07-01 02:32:14] [INFO] --- Filling Record 1/1 ---
+[2026-07-01 02:32:14] [WARNING] Record 1 is missing required fields: ['Name\n(Last name, First name, M.I.)\n(optional)']
+[2026-07-01 02:32:14] [INFO] --- Processing Page 1 ---
+[2026-07-01 02:32:14] [WARNING] Timeout waiting for form elements. The form may require login or be empty.
+[2026-07-01 02:32:14] [ERROR] Automation thread encountered an error: cannot switch to a different thread (which happens to have exited)
+[2026-07-01 02:32:20] [INFO] Cleared all fields.
+[2026-07-01 02:32:59] [INFO] Navigating to form: https://docs.google.com/forms/d/e/1FAIpQLScZFpP_KlYaIdesBnY2PpqkQDYCqtq_LlHrLohaEBuEbok6RQ/viewform?usp=dialog
+[2026-07-01 02:32:59] [ERROR] Scan failed: cannot switch to a different thread (which happens to have exited)
+[2026-07-01 02:33:01] [INFO] Cleared all fields.
+[2026-07-01 02:33:05] [INFO] Navigating to form: https://docs.google.com/forms/d/e/1FAIpQLScZFpP_KlYaIdesBnY2PpqkQDYCqtq_LlHrLohaEBuEbok6RQ/viewform?usp=dialog
+[2026-07-01 02:33:05] [ERROR] Scan failed: cannot switch to a different thread (which happens to have exited)
+[2026-07-01 02:33:07] [INFO] Closing browser...
+[2026-07-01 02:33:14] [INFO] Application initialized. Ready to automate.
+[2026-07-01 02:33:17] [INFO] Launching Chrome/Chromium browser...
+[2026-07-01 02:33:18] [INFO] Navigating to form: https://docs.google.com/forms/d/e/1FAIpQLScZFpP_KlYaIdesBnY2PpqkQDYCqtq_LlHrLohaEBuEbok6RQ/viewform?usp=dialog
+[2026-07-01 02:33:24] [INFO] Scanning Page 1...
+[2026-07-01 02:33:24] [INFO] Scan complete. Form Title: 'A survey about "Comparison On The Academic Performance Of Abm And Non – ABM Custom Students In University Of Cebu – Lapu-Lapu And Mandaue"'. Detected 5 questions.
+[2026-07-01 02:33:24] [INFO] Generated raw data template in the textbox.
+[2026-07-01 02:33:24] [INFO] No saved template. Will use auto-matching on fill.
+[2026-07-01 02:34:06] [INFO] Closing browser...
+[2026-07-01 02:34:09] [INFO] Application initialized. Ready to automate.
+[2026-07-01 02:34:18] [INFO] Starting fill. Total records: 1. Batch Mode: False
+[2026-07-01 02:34:18] [INFO] --- Filling Record 1/1 ---
+[2026-07-01 02:34:18] [INFO] Form not scanned or URL changed. Navigating and scanning now...
+[2026-07-01 02:34:18] [INFO] Launching Chrome/Chromium browser...
+[2026-07-01 02:34:18] [INFO] Navigating to form: https://docs.google.com/forms/d/e/1FAIpQLScZFpP_KlYaIdesBnY2PpqkQDYCqtq_LlHrLohaEBuEbok6RQ/viewform?usp=dialog
+[2026-07-01 02:34:24] [INFO] Scanning Page 1...
+[2026-07-01 02:34:24] [INFO] --- Processing Page 1 ---
+[2026-07-01 02:34:25] [INFO] Page 1 Questions: ['Name\n(Last name, First name, M.I.)\n(optional)', 'Gender', 'Age', 'SHS - Strand', 'Cumulative Grade Point Average (GPA)']
+[2026-07-01 02:34:25] [INFO] Mapped fields for Page 1: ['Name\n(Last name, First name, M.I.)\n(optional)', 'Gender', 'Age', 'SHS - Strand', 'Cumulative Grade Point Average (GPA)']
+[2026-07-01 02:34:25] [INFO] Filling: 'Name
+(Last name, First name, M.I.)
+(optional)' -> 'Doe, Jane S.'
+[2026-07-01 02:34:25] [WARNING] Could not locate field for: Name
+(Last name, First name, M.I.)
+(optional)
+[2026-07-01 02:34:25] [INFO] Filling: 'Gender' -> 'Female'
+[2026-07-01 02:34:25] [INFO] Filling: 'Age' -> '19 years old'
+[2026-07-01 02:34:25] [INFO] Filling: 'SHS - Strand' -> 'Accountancy, Business, and Management (ABM)'
+[2026-07-01 02:34:25] [INFO] Filling: 'Cumulative Grade Point Average (GPA)' -> '3.5 or above'
+[2026-07-01 02:34:26] [INFO] No 'Next' button found. Reached the final page of the form.
+[2026-07-01 02:34:26] [INFO] Record 1 filled in browser.
+[2026-07-01 02:34:26] [INFO] Filling complete. Review the form in the browser. You can submit in the browser or click 'Submit Form' in the GUI.
+[2026-07-01 02:34:26] [INFO] All records processed.
+[2026-07-01 02:38:10] [INFO] Closing browser...
+[2026-07-01 02:38:50] [INFO] Application initialized. Ready to automate.
+[2026-07-01 02:38:52] [INFO] Starting unified Scan-and-Fill process...
+[2026-07-01 02:38:52] [INFO] Launching Chrome/Chromium browser...
+[2026-07-01 02:38:53] [INFO] Navigating to form: https://docs.google.com/forms/d/e/1FAIpQLScZFpP_KlYaIdesBnY2PpqkQDYCqtq_LlHrLohaEBuEbok6RQ/viewform?usp=dialog
+[2026-07-01 02:38:59] [INFO] --- Automating Page 1 ---
+[2026-07-01 02:38:59] [INFO] Page 1 Scanned. Section: 'General'. Questions found: 5
+[2026-07-01 02:38:59] [INFO] Filling [DUMMY]: 'Name (Last name, First name, M.I.) (optional)' -> 'Test User'
+[2026-07-01 02:38:59] [WARNING] Could not locate field for: Name (Last name, First name, M.I.) (optional)
+[2026-07-01 02:38:59] [INFO] Filling [DUMMY]: 'Gender' -> 'Male'
+[2026-07-01 02:38:59] [INFO] Filling [DUMMY]: 'Age' -> '21'
+[2026-07-01 02:38:59] [WARNING] Could not find option '21' for question 'Age'
+[2026-07-01 02:38:59] [INFO] Filling [DUMMY]: 'SHS - Strand' -> 'Accountancy, Business, and Management (ABM)'
+[2026-07-01 02:39:00] [INFO] Filling [DUMMY]: 'Cumulative Grade Point Average (GPA)' -> '21'
+[2026-07-01 02:39:00] [WARNING] Could not find option '21' for question 'Cumulative Grade Point Average (GPA)'
+[2026-07-01 02:39:00] [INFO] Reached final page of the form.
+[2026-07-01 02:43:28] [INFO] Closing browser...
+[2026-07-01 02:43:55] [INFO] Application initialized. Ready to automate.
+[2026-07-01 02:43:57] [INFO] Starting unified Scan-and-Fill process...
+[2026-07-01 02:43:57] [INFO] Launching Chrome/Chromium browser...
+[2026-07-01 02:43:59] [INFO] Navigating to form: https://docs.google.com/forms/d/e/1FAIpQLScZFpP_KlYaIdesBnY2PpqkQDYCqtq_LlHrLohaEBuEbok6RQ/viewform?usp=dialog
+[2026-07-01 02:44:04] [INFO] --- Automating Page 1 ---
+[2026-07-01 02:44:05] [INFO] Page 1 Scanned. Section: 'General'. Questions found: 5
+[2026-07-01 02:44:05] [INFO] Filling [DUMMY]: 'Name (Last name, First name, M.I.)' -> 'Test User'
+[2026-07-01 02:44:05] [WARNING] Could not locate field for: Name (Last name, First name, M.I.)
+[2026-07-01 02:44:05] [INFO] Filling [DUMMY]: 'Gender' -> 'Male'
+[2026-07-01 02:44:05] [INFO] Filling [DUMMY]: 'Age' -> '21'
+[2026-07-01 02:44:05] [WARNING] Could not find option '21' for question 'Age'
+[2026-07-01 02:44:05] [INFO] Filling [DUMMY]: 'SHS - Strand' -> 'Accountancy, Business, and Management (ABM)'
+[2026-07-01 02:44:05] [INFO] Filling [DUMMY]: 'Cumulative Grade Point Average (GPA)' -> '21'
+[2026-07-01 02:44:06] [WARNING] Could not find option '21' for question 'Cumulative Grade Point Average (GPA)'
+[2026-07-01 02:44:06] [INFO] Reached final page of the form.
+[2026-07-01 02:47:44] [INFO] Closing browser...
+[2026-07-01 02:47:56] [INFO] Application initialized. Ready to automate.
+[2026-07-01 02:48:06] [INFO] Launching Chrome/Chromium browser...
+[2026-07-01 02:48:08] [INFO] Navigating to form: https://docs.google.com/forms/d/e/1FAIpQLScZFpP_KlYaIdesBnY2PpqkQDYCqtq_LlHrLohaEBuEbok6RQ/viewform?usp=dialog
+[2026-07-01 02:48:14] [INFO] Starting Phase 1: Full Form Scan
+[2026-07-01 02:48:14] [INFO] Scanning Page 1...
+[2026-07-01 02:48:15] [ERROR] Scan failed: 'BrowserController' object has no attribute '_find_button'
+[2026-07-01 02:48:19] [INFO] Navigating to form: https://docs.google.com/forms/d/e/1FAIpQLScZFpP_KlYaIdesBnY2PpqkQDYCqtq_LlHrLohaEBuEbok6RQ/viewform?usp=dialog
+[2026-07-01 02:48:19] [ERROR] Scan failed: cannot switch to a different thread (which happens to have exited)
+[2026-07-01 02:48:23] [INFO] Closing browser...
+[2026-07-01 02:48:26] [INFO] Application initialized. Ready to automate.
+[2026-07-01 02:48:29] [INFO] Launching Chrome/Chromium browser...
+[2026-07-01 02:48:30] [INFO] Navigating to form: https://docs.google.com/forms/d/e/1FAIpQLScZFpP_KlYaIdesBnY2PpqkQDYCqtq_LlHrLohaEBuEbok6RQ/viewform?usp=dialog
+[2026-07-01 02:48:36] [INFO] Starting Phase 1: Full Form Scan
+[2026-07-01 02:48:36] [INFO] Scanning Page 1...
+[2026-07-01 02:48:36] [ERROR] Scan failed: 'BrowserController' object has no attribute '_find_button'
+[2026-07-01 02:48:58] [INFO] Navigating to form: https://docs.google.com/forms/d/e/1FAIpQLScZFpP_KlYaIdesBnY2PpqkQDYCqtq_LlHrLohaEBuEbok6RQ/viewform?usp=dialog
+[2026-07-01 02:48:58] [ERROR] Scan failed: cannot switch to a different thread (which happens to have exited)
+[2026-07-01 02:48:59] [INFO] Closing browser...
+[2026-07-01 02:49:02] [INFO] Application initialized. Ready to automate.
+[2026-07-01 02:49:11] [INFO] Launching Chrome/Chromium browser...
+[2026-07-01 02:49:12] [INFO] Navigating to form: https://docs.google.com/forms/d/e/1FAIpQLScZFpP_KlYaIdesBnY2PpqkQDYCqtq_LlHrLohaEBuEbok6RQ/viewform?usp=dialog
+[2026-07-01 02:49:18] [INFO] Starting Phase 1: Full Form Scan
+[2026-07-01 02:49:18] [INFO] Scanning Page 1...
+[2026-07-01 02:49:18] [ERROR] Scan failed: 'BrowserController' object has no attribute '_find_button'
+[2026-07-01 02:49:23] [INFO] Closing browser...
+[2026-07-01 02:49:28] [INFO] Application initialized. Ready to automate.
+[2026-07-01 02:49:31] [INFO] Launching Chrome/Chromium browser...
+[2026-07-01 02:49:32] [INFO] Navigating to form: https://docs.google.com/forms/d/e/1FAIpQLScZFpP_KlYaIdesBnY2PpqkQDYCqtq_LlHrLohaEBuEbok6RQ/viewform?usp=dialog
+[2026-07-01 02:49:38] [INFO] Starting Phase 1: Full Form Scan
+[2026-07-01 02:49:38] [INFO] Scanning Page 1...
+[2026-07-01 02:49:38] [ERROR] Scan failed: 'BrowserController' object has no attribute '_find_button'
+[2026-07-01 02:50:30] [INFO] Closing browser...
+[2026-07-01 02:50:34] [INFO] Application initialized. Ready to automate.
+[2026-07-01 02:50:44] [INFO] Launching Chrome/Chromium browser...
+[2026-07-01 02:50:44] [INFO] Navigating to form: https://docs.google.com/forms/d/e/1FAIpQLScZFpP_KlYaIdesBnY2PpqkQDYCqtq_LlHrLohaEBuEbok6RQ/viewform?usp=dialog
+[2026-07-01 02:50:50] [INFO] Starting Phase 1: Full Form Scan
+[2026-07-01 02:50:50] [INFO] Scanning Page 1...
+[2026-07-01 02:50:51] [INFO] Found question: Name (Last name, First name, M.I.) | Type: short_answer | Required: True
+[2026-07-01 02:50:51] [INFO] Found question: Gender | Type: multiple_choice | Required: True | Options: Male, Female
+[2026-07-01 02:50:51] [INFO] Found question: Age | Type: multiple_choice | Required: True | Options: 18 years old, 19 years old, 20 years old, 21 years old and above
+[2026-07-01 02:50:51] [INFO] Found question: SHS - Strand | Type: multiple_choice | Required: True | Options: Accountancy, Business, and Management (ABM), Non - ABM
+[2026-07-01 02:50:51] [INFO] Found question: Cumulative Grade Point Average (GPA) | Type: multiple_choice | Required: True | Options: Below 2.0, 2.0 - 2.49, 2.5 - 2.99, 3.0 - 3.49, 3.5 or above
+[2026-07-01 02:50:51] [INFO] Reached final page (Submit button detected). Scan complete.
+[2026-07-01 02:50:51] [INFO] Generated raw data template in the textbox.
+[2026-07-01 02:52:28] [INFO] Application initialized. Ready to automate.
+[2026-07-01 02:52:35] [INFO] Launching Chrome/Chromium browser...
+[2026-07-01 02:52:36] [INFO] Navigating to form: https://docs.google.com/forms/d/e/1FAIpQLScZFpP_KlYaIdesBnY2PpqkQDYCqtq_LlHrLohaEBuEbok6RQ/viewform?usp=dialog
+[2026-07-01 02:52:42] [INFO] Starting Phase 1: Full Form Scan
+[2026-07-01 02:52:42] [INFO] Scanning Page 1...
+[2026-07-01 02:52:42] [INFO] Found question: Name (Last name, First name, M.I.) | Type: short_answer | Required: True
+[2026-07-01 02:52:42] [INFO] Found question: Gender | Type: multiple_choice | Required: True | Options: Male, Female
+[2026-07-01 02:52:42] [INFO] Found question: Age | Type: multiple_choice | Required: True | Options: 18 years old, 19 years old, 20 years old, 21 years old and above
+[2026-07-01 02:52:42] [INFO] Found question: SHS - Strand | Type: multiple_choice | Required: True | Options: Accountancy, Business, and Management (ABM), Non - ABM
+[2026-07-01 02:52:42] [INFO] Found question: Cumulative Grade Point Average (GPA) | Type: multiple_choice | Required: True | Options: Below 2.0, 2.0 - 2.49, 2.5 - 2.99, 3.0 - 3.49, 3.5 or above
+[2026-07-01 02:52:42] [INFO] Building answer plan for Page 1...
+[2026-07-01 02:52:42] [INFO] Planned dummy answer: Name (Last name, First name, M.I.) -> Test User
+[2026-07-01 02:52:42] [INFO] Planned dummy answer: Gender -> Male
+[2026-07-01 02:52:42] [INFO] Planned dummy answer: Age -> 21 years old and above
+[2026-07-01 02:52:42] [INFO] Planned dummy answer: SHS - Strand -> Accountancy, Business, and Management (ABM)
+[2026-07-01 02:52:42] [INFO] Planned dummy answer: Cumulative Grade Point Average (GPA) -> 3.5 or above
+[2026-07-01 02:52:42] [INFO] Filling required fields for Page 1...
+[2026-07-01 02:52:42] [WARNING] Could not locate container for: Name (Last name, First name, M.I.)
+[2026-07-01 02:52:43] [INFO] Validating Page 1...
+[2026-07-01 02:52:43] [INFO] Clicking Next...
+[2026-07-01 02:52:44] [INFO] Scanning Page 2...
+[2026-07-01 02:52:44] [INFO] Found question: Name (Last name, First name, M.I.) | Type: short_answer | Required: True
+[2026-07-01 02:52:44] [INFO] Found question: Gender | Type: multiple_choice | Required: True | Options: Male, Female
+[2026-07-01 02:52:44] [INFO] Found question: Age | Type: multiple_choice | Required: True | Options: 18 years old, 19 years old, 20 years old, 21 years old and above
+[2026-07-01 02:52:44] [INFO] Found question: SHS - Strand | Type: multiple_choice | Required: True | Options: Accountancy, Business, and Management (ABM), Non - ABM
+[2026-07-01 02:52:44] [INFO] Found question: Cumulative Grade Point Average (GPA) | Type: multiple_choice | Required: True | Options: Below 2.0, 2.0 - 2.49, 2.5 - 2.99, 3.0 - 3.49, 3.5 or above
+[2026-07-01 02:52:44] [INFO] Building answer plan for Page 2...
+[2026-07-01 02:52:44] [INFO] Planned dummy answer: Name (Last name, First name, M.I.) -> Test User
+[2026-07-01 02:52:44] [INFO] Planned dummy answer: Gender -> Male
+[2026-07-01 02:52:44] [INFO] Planned dummy answer: Age -> 21 years old and above
+[2026-07-01 02:52:44] [INFO] Planned dummy answer: SHS - Strand -> Accountancy, Business, and Management (ABM)
+[2026-07-01 02:52:44] [INFO] Planned dummy answer: Cumulative Grade Point Average (GPA) -> 3.5 or above
+[2026-07-01 02:52:44] [INFO] Filling required fields for Page 2...
+[2026-07-01 02:52:44] [WARNING] Could not locate container for: Name (Last name, First name, M.I.)
+[2026-07-01 02:52:45] [INFO] Validating Page 2...
+[2026-07-01 02:52:45] [WARNING] Validation failed on Page 2: ['Kailangan ang tanong na ito', 'Kailangan ang tanong na ito']. Attempting to resolve...
+[2026-07-01 02:52:45] [INFO] Clicking Next...
+[2026-07-01 02:52:46] [INFO] Scanning Page 3...
+[2026-07-01 02:52:46] [INFO] Found question: Name (Last name, First name, M.I.) | Type: short_answer | Required: True
+[2026-07-01 02:52:46] [INFO] Found question: Gender | Type: multiple_choice | Required: True | Options: Male, Female
+[2026-07-01 02:52:46] [INFO] Found question: Age | Type: multiple_choice | Required: True | Options: 18 years old, 19 years old, 20 years old, 21 years old and above
+[2026-07-01 02:52:46] [INFO] Found question: SHS - Strand | Type: multiple_choice | Required: True | Options: Accountancy, Business, and Management (ABM), Non - ABM
+[2026-07-01 02:52:46] [INFO] Found question: Cumulative Grade Point Average (GPA) | Type: multiple_choice | Required: True | Options: Below 2.0, 2.0 - 2.49, 2.5 - 2.99, 3.0 - 3.49, 3.5 or above
+[2026-07-01 02:52:46] [INFO] Building answer plan for Page 3...
+[2026-07-01 02:52:46] [INFO] Planned dummy answer: Name (Last name, First name, M.I.) -> Test User
+[2026-07-01 02:52:46] [INFO] Planned dummy answer: Gender -> Male
+[2026-07-01 02:52:46] [INFO] Planned dummy answer: Age -> 21 years old and above
+[2026-07-01 02:52:46] [INFO] Planned dummy answer: SHS - Strand -> Accountancy, Business, and Management (ABM)
+[2026-07-01 02:52:46] [INFO] Planned dummy answer: Cumulative Grade Point Average (GPA) -> 3.5 or above
+[2026-07-01 02:52:46] [INFO] Filling required fields for Page 3...
+[2026-07-01 02:52:46] [WARNING] Could not locate container for: Name (Last name, First name, M.I.)
+[2026-07-01 02:52:47] [INFO] Validating Page 3...
+[2026-07-01 02:52:47] [WARNING] Validation failed on Page 3: ['Kailangan ang tanong na ito', 'Kailangan ang tanong na ito']. Attempting to resolve...
+[2026-07-01 02:52:47] [INFO] Clicking Next...
+[2026-07-01 02:52:48] [INFO] Scanning Page 4...
+[2026-07-01 02:52:49] [INFO] Found question: Name (Last name, First name, M.I.) | Type: short_answer | Required: True
+[2026-07-01 02:52:49] [INFO] Found question: Gender | Type: multiple_choice | Required: True | Options: Male, Female
+[2026-07-01 02:52:49] [INFO] Found question: Age | Type: multiple_choice | Required: True | Options: 18 years old, 19 years old, 20 years old, 21 years old and above
+[2026-07-01 02:52:49] [INFO] Found question: SHS - Strand | Type: multiple_choice | Required: True | Options: Accountancy, Business, and Management (ABM), Non - ABM
+[2026-07-01 02:52:49] [INFO] Found question: Cumulative Grade Point Average (GPA) | Type: multiple_choice | Required: True | Options: Below 2.0, 2.0 - 2.49, 2.5 - 2.99, 3.0 - 3.49, 3.5 or above
+[2026-07-01 02:52:49] [INFO] Building answer plan for Page 4...
+[2026-07-01 02:52:49] [INFO] Planned dummy answer: Name (Last name, First name, M.I.) -> Test User
+[2026-07-01 02:52:49] [INFO] Planned dummy answer: Gender -> Male
+[2026-07-01 02:52:49] [INFO] Planned dummy answer: Age -> 21 years old and above
+[2026-07-01 02:52:49] [INFO] Planned dummy answer: SHS - Strand -> Accountancy, Business, and Management (ABM)
+[2026-07-01 02:52:49] [INFO] Planned dummy answer: Cumulative Grade Point Average (GPA) -> 3.5 or above
+[2026-07-01 02:52:49] [INFO] Filling required fields for Page 4...
+[2026-07-01 02:52:49] [WARNING] Could not locate container for: Name (Last name, First name, M.I.)
+[2026-07-01 02:52:49] [INFO] Validating Page 4...
+[2026-07-01 02:52:49] [WARNING] Validation failed on Page 4: ['Kailangan ang tanong na ito', 'Kailangan ang tanong na ito']. Attempting to resolve...
+[2026-07-01 02:52:49] [INFO] Clicking Next...
+[2026-07-01 02:52:50] [INFO] Scanning Page 5...
+[2026-07-01 02:52:51] [INFO] Found question: Name (Last name, First name, M.I.) | Type: short_answer | Required: True
+[2026-07-01 02:52:51] [INFO] Found question: Gender | Type: multiple_choice | Required: True | Options: Male, Female
+[2026-07-01 02:52:51] [INFO] Found question: Age | Type: multiple_choice | Required: True | Options: 18 years old, 19 years old, 20 years old, 21 years old and above
+[2026-07-01 02:52:51] [INFO] Found question: SHS - Strand | Type: multiple_choice | Required: True | Options: Accountancy, Business, and Management (ABM), Non - ABM
+[2026-07-01 02:52:51] [INFO] Found question: Cumulative Grade Point Average (GPA) | Type: multiple_choice | Required: True | Options: Below 2.0, 2.0 - 2.49, 2.5 - 2.99, 3.0 - 3.49, 3.5 or above
+[2026-07-01 02:52:51] [INFO] Building answer plan for Page 5...
+[2026-07-01 02:52:51] [INFO] Planned dummy answer: Name (Last name, First name, M.I.) -> Test User
+[2026-07-01 02:52:51] [INFO] Planned dummy answer: Gender -> Male
+[2026-07-01 02:52:51] [INFO] Planned dummy answer: Age -> 21 years old and above
+[2026-07-01 02:52:51] [INFO] Planned dummy answer: SHS - Strand -> Accountancy, Business, and Management (ABM)
+[2026-07-01 02:52:51] [INFO] Planned dummy answer: Cumulative Grade Point Average (GPA) -> 3.5 or above
+[2026-07-01 02:52:51] [INFO] Filling required fields for Page 5...
+[2026-07-01 02:52:51] [WARNING] Could not locate container for: Name (Last name, First name, M.I.)
+[2026-07-01 02:52:51] [INFO] Validating Page 5...
+[2026-07-01 02:52:51] [WARNING] Validation failed on Page 5: ['Kailangan ang tanong na ito', 'Kailangan ang tanong na ito']. Attempting to resolve...
+[2026-07-01 02:52:51] [INFO] Clicking Next...
+[2026-07-01 02:52:52] [INFO] Scanning Page 6...
+[2026-07-01 02:52:53] [INFO] Found question: Name (Last name, First name, M.I.) | Type: short_answer | Required: True
+[2026-07-01 02:52:53] [INFO] Found question: Gender | Type: multiple_choice | Required: True | Options: Male, Female
+[2026-07-01 02:52:53] [INFO] Found question: Age | Type: multiple_choice | Required: True | Options: 18 years old, 19 years old, 20 years old, 21 years old and above
+[2026-07-01 02:52:53] [INFO] Found question: SHS - Strand | Type: multiple_choice | Required: True | Options: Accountancy, Business, and Management (ABM), Non - ABM
+[2026-07-01 02:52:53] [INFO] Found question: Cumulative Grade Point Average (GPA) | Type: multiple_choice | Required: True | Options: Below 2.0, 2.0 - 2.49, 2.5 - 2.99, 3.0 - 3.49, 3.5 or above
+[2026-07-01 02:52:53] [INFO] Building answer plan for Page 6...
+[2026-07-01 02:52:53] [INFO] Planned dummy answer: Name (Last name, First name, M.I.) -> Test User
+[2026-07-01 02:52:53] [INFO] Planned dummy answer: Gender -> Male
+[2026-07-01 02:52:53] [INFO] Planned dummy answer: Age -> 21 years old and above
+[2026-07-01 02:52:53] [INFO] Planned dummy answer: SHS - Strand -> Accountancy, Business, and Management (ABM)
+[2026-07-01 02:52:53] [INFO] Planned dummy answer: Cumulative Grade Point Average (GPA) -> 3.5 or above
+[2026-07-01 02:52:53] [INFO] Filling required fields for Page 6...
+[2026-07-01 02:52:53] [WARNING] Could not locate container for: Name (Last name, First name, M.I.)
+[2026-07-01 02:52:53] [ERROR] Scan failed: Locator.count: Target page, context or browser has been closed
+[2026-07-01 02:54:39] [INFO] Closing browser...
+[2026-07-01 02:54:48] [INFO] Application initialized. Ready to automate.
+[2026-07-01 02:54:50] [INFO] Launching Chrome/Chromium browser...
+[2026-07-01 02:54:51] [INFO] Navigating to form: https://docs.google.com/forms/d/e/1FAIpQLScZFpP_KlYaIdesBnY2PpqkQDYCqtq_LlHrLohaEBuEbok6RQ/viewform?usp=dialog
+[2026-07-01 02:54:57] [INFO] Starting Phase 1: Full Form Scan
+[2026-07-01 02:54:57] [INFO] Scanning Page 1...
+[2026-07-01 02:54:57] [INFO] Found question: Name (Last name, First name, M.I.) | Type: short_answer | Required: True
+[2026-07-01 02:54:57] [INFO] Found question: Gender | Type: multiple_choice | Required: True | Options: Male, Female
+[2026-07-01 02:54:57] [INFO] Found question: Age | Type: multiple_choice | Required: True | Options: 18 years old, 19 years old, 20 years old, 21 years old and above
+[2026-07-01 02:54:57] [INFO] Found question: SHS - Strand | Type: multiple_choice | Required: True | Options: Accountancy, Business, and Management (ABM), Non - ABM
+[2026-07-01 02:54:57] [INFO] Found question: Cumulative Grade Point Average (GPA) | Type: multiple_choice | Required: True | Options: Below 2.0, 2.0 - 2.49, 2.5 - 2.99, 3.0 - 3.49, 3.5 or above
+[2026-07-01 02:54:57] [INFO] Building answer plan for Page 1...
+[2026-07-01 02:54:57] [INFO] Planned dummy answer (required): Name (Last name, First name, M.I.) -> Test User
+[2026-07-01 02:54:57] [INFO] Planned dummy answer (required): Gender -> Male
+[2026-07-01 02:54:57] [INFO] Planned dummy answer (required): Age -> 21 years old and above
+[2026-07-01 02:54:57] [INFO] Planned dummy answer (required): SHS - Strand -> Accountancy, Business, and Management (ABM)
+[2026-07-01 02:54:57] [INFO] Planned dummy answer (required): Cumulative Grade Point Average (GPA) -> 3.5 or above
+[2026-07-01 02:54:57] [INFO] Filling required fields for Page 1...
+[2026-07-01 02:54:57] [INFO] Located container using parenthesis prefix: 'Name'
+[2026-07-01 02:54:57] [INFO] Successfully filled text field with: 'Test User'
+[2026-07-01 02:54:58] [INFO] Validating Page 1...
+[2026-07-01 02:54:58] [INFO] Clicking Next...
+[2026-07-01 02:55:01] [INFO] Scanning Page 2...
+[2026-07-01 02:55:01] [INFO] Found question: 1. I consistently perform well in my major courses. | Type: multiple_choice | Required: True | Options: Strongly Agree, Agree, Neutral, Disagree, Strongly Disagree
+[2026-07-01 02:55:01] [INFO] Found question: 2. I am able to understand and apply the concepts taught in my major courses effectively. | Type: multiple_choice | Required: True | Options: Strongly Agree, Agree, Neutral, Disagree, Strongly Disagree
+[2026-07-01 02:55:01] [INFO] Found question: 3. I feel confident in my ability to perform tasks and assignments related to my major courses. | Type: multiple_choice | Required: True | Options: Strongly Agree, Agree, Neutral, Disagree, Strongly Disagree
+[2026-07-01 02:55:01] [INFO] Found question: 4. I actively participate in discussions and activities related to my major courses. | Type: multiple_choice | Required: True | Options: Strongly Agree, Agree, Neutral, Disagree, Strongly Disagree
+[2026-07-01 02:55:01] [INFO] Found question: 5. I seek additional resources and engage in extra study to enhance my performance in major courses. | Type: multiple_choice | Required: True | Options: Strongly Agree, Agree, Neutral, Disagree, Strongly Disagree
+[2026-07-01 02:55:01] [INFO] Building answer plan for Page 2...
+[2026-07-01 02:55:01] [INFO] Planned dummy answer (required): 1. I consistently perform well in my major courses. -> Strongly Agree
+[2026-07-01 02:55:01] [INFO] Planned dummy answer (required): 2. I am able to understand and apply the concepts taught in my major courses effectively. -> Strongly Agree
+[2026-07-01 02:55:01] [INFO] Planned dummy answer (required): 3. I feel confident in my ability to perform tasks and assignments related to my major courses. -> Strongly Agree
+[2026-07-01 02:55:01] [INFO] Planned dummy answer (required): 4. I actively participate in discussions and activities related to my major courses. -> Strongly Agree
+[2026-07-01 02:55:01] [INFO] Planned dummy answer (required): 5. I seek additional resources and engage in extra study to enhance my performance in major courses. -> Strongly Agree
+[2026-07-01 02:55:01] [INFO] Filling required fields for Page 2...
+[2026-07-01 02:55:02] [INFO] Validating Page 2...
+[2026-07-01 02:55:02] [INFO] Clicking Next...
+[2026-07-01 02:55:05] [INFO] Scanning Page 3...
+[2026-07-01 02:55:06] [INFO] Found question: 1. I consistently perform well in my core/general education courses. | Type: multiple_choice | Required: True | Options: Strongly Agree, Agree, Neutral, Disagree, Strongly Disagree
+[2026-07-01 02:55:06] [INFO] Found question: 2. I find the concepts taught in my core/general education courses relevant to my academic goals. | Type: multiple_choice | Required: True | Options: Strongly Agree, Agree, Neutral, Disagree, Strongly Disagree
+[2026-07-01 02:55:06] [INFO] Found question: 3. I feel motivated to excel in my core/general education courses. | Type: multiple_choice | Required: True | Options: Strongly Agree, Agree, Neutral, Disagree, Strongly Disagree
+[2026-07-01 02:55:06] [INFO] Found question: 4. I actively participate in discussions and activities related to my core/general education courses. | Type: multiple_choice | Required: True | Options: Strongly Agree, Agree, Neutral, Disagree, Strongly Disagree
+[2026-07-01 02:55:06] [INFO] Found question: 5. I recognize the importance of core/general education courses in developing a well-rounded academic foundation. | Type: multiple_choice | Required: True | Options: Strongly Agree, Agree, Neutral, Disagree, Strongly Disagree
+[2026-07-01 02:55:06] [INFO] Reached final page (Submit button detected). Scan complete.
+[2026-07-01 02:55:06] [INFO] Reloading form to clear all temporary dummy data...
+[2026-07-01 02:55:06] [INFO] Navigating to form: https://docs.google.com/forms/d/e/1FAIpQLScZFpP_KlYaIdesBnY2PpqkQDYCqtq_LlHrLohaEBuEbok6RQ/viewform?usp=dialog
+[2026-07-01 02:55:07] [INFO] Generated raw data template in the textbox.
+[2026-07-01 02:55:37] [INFO] Closing browser...
+[2026-07-01 02:55:41] [INFO] Application initialized. Ready to automate.
+[2026-07-01 02:55:44] [INFO] Launching Chrome/Chromium browser...
+[2026-07-01 02:55:45] [INFO] Navigating to form: https://docs.google.com/forms/d/e/1FAIpQLScZFpP_KlYaIdesBnY2PpqkQDYCqtq_LlHrLohaEBuEbok6RQ/viewform?usp=dialog
+[2026-07-01 02:55:50] [INFO] Starting Phase 1: Full Form Scan
+[2026-07-01 02:55:50] [INFO] Scanning Page 1...
+[2026-07-01 02:55:51] [INFO] Found question: Name (Last name, First name, M.I.) | Type: short_answer | Required: True
+[2026-07-01 02:55:51] [INFO] Found question: Gender | Type: multiple_choice | Required: True | Options: Male, Female
+[2026-07-01 02:55:51] [INFO] Found question: Age | Type: multiple_choice | Required: True | Options: 18 years old, 19 years old, 20 years old, 21 years old and above
+[2026-07-01 02:55:51] [INFO] Found question: SHS - Strand | Type: multiple_choice | Required: True | Options: Accountancy, Business, and Management (ABM), Non - ABM
+[2026-07-01 02:55:51] [INFO] Found question: Cumulative Grade Point Average (GPA) | Type: multiple_choice | Required: True | Options: Below 2.0, 2.0 - 2.49, 2.5 - 2.99, 3.0 - 3.49, 3.5 or above
+[2026-07-01 02:55:51] [INFO] Building answer plan for Page 1...
+[2026-07-01 02:55:51] [INFO] Planned dummy answer (required): Name (Last name, First name, M.I.) -> Test User
+[2026-07-01 02:55:51] [INFO] Planned dummy answer (required): Gender -> Male
+[2026-07-01 02:55:51] [INFO] Planned dummy answer (required): Age -> 21 years old and above
+[2026-07-01 02:55:51] [INFO] Planned dummy answer (required): SHS - Strand -> Accountancy, Business, and Management (ABM)
+[2026-07-01 02:55:51] [INFO] Planned dummy answer (required): Cumulative Grade Point Average (GPA) -> 3.5 or above
+[2026-07-01 02:55:51] [INFO] Filling required fields for Page 1...
+[2026-07-01 02:55:51] [INFO] Located container using parenthesis prefix: 'Name'
+[2026-07-01 02:55:51] [INFO] Successfully filled text field with: 'Test User'
+[2026-07-01 02:55:52] [INFO] Validating Page 1...
+[2026-07-01 02:55:52] [INFO] Clicking Next...
+[2026-07-01 02:55:54] [INFO] Scanning Page 2...
+[2026-07-01 02:55:55] [INFO] Found question: 1. I consistently perform well in my major courses. | Type: multiple_choice | Required: True | Options: Strongly Agree, Agree, Neutral, Disagree, Strongly Disagree
+[2026-07-01 02:55:55] [INFO] Found question: 2. I am able to understand and apply the concepts taught in my major courses effectively. | Type: multiple_choice | Required: True | Options: Strongly Agree, Agree, Neutral, Disagree, Strongly Disagree
+[2026-07-01 02:55:55] [INFO] Found question: 3. I feel confident in my ability to perform tasks and assignments related to my major courses. | Type: multiple_choice | Required: True | Options: Strongly Agree, Agree, Neutral, Disagree, Strongly Disagree
+[2026-07-01 02:55:55] [INFO] Found question: 4. I actively participate in discussions and activities related to my major courses. | Type: multiple_choice | Required: True | Options: Strongly Agree, Agree, Neutral, Disagree, Strongly Disagree
+[2026-07-01 02:55:55] [INFO] Found question: 5. I seek additional resources and engage in extra study to enhance my performance in major courses. | Type: multiple_choice | Required: True | Options: Strongly Agree, Agree, Neutral, Disagree, Strongly Disagree
+[2026-07-01 02:55:55] [INFO] Building answer plan for Page 2...
+[2026-07-01 02:55:55] [INFO] Planned dummy answer (required): 1. I consistently perform well in my major courses. -> Strongly Agree
+[2026-07-01 02:55:55] [INFO] Planned dummy answer (required): 2. I am able to understand and apply the concepts taught in my major courses effectively. -> Strongly Agree
+[2026-07-01 02:55:55] [INFO] Planned dummy answer (required): 3. I feel confident in my ability to perform tasks and assignments related to my major courses. -> Strongly Agree
+[2026-07-01 02:55:55] [INFO] Planned dummy answer (required): 4. I actively participate in discussions and activities related to my major courses. -> Strongly Agree
+[2026-07-01 02:55:55] [INFO] Planned dummy answer (required): 5. I seek additional resources and engage in extra study to enhance my performance in major courses. -> Strongly Agree
+[2026-07-01 02:55:55] [INFO] Filling required fields for Page 2...
+[2026-07-01 02:55:55] [INFO] Validating Page 2...
+[2026-07-01 02:55:56] [INFO] Clicking Next...
+[2026-07-01 02:55:58] [INFO] Scanning Page 3...
+[2026-07-01 02:55:59] [INFO] Found question: 1. I consistently perform well in my core/general education courses. | Type: multiple_choice | Required: True | Options: Strongly Agree, Agree, Neutral, Disagree, Strongly Disagree
+[2026-07-01 02:55:59] [INFO] Found question: 2. I find the concepts taught in my core/general education courses relevant to my academic goals. | Type: multiple_choice | Required: True | Options: Strongly Agree, Agree, Neutral, Disagree, Strongly Disagree
+[2026-07-01 02:55:59] [INFO] Found question: 3. I feel motivated to excel in my core/general education courses. | Type: multiple_choice | Required: True | Options: Strongly Agree, Agree, Neutral, Disagree, Strongly Disagree
+[2026-07-01 02:55:59] [INFO] Found question: 4. I actively participate in discussions and activities related to my core/general education courses. | Type: multiple_choice | Required: True | Options: Strongly Agree, Agree, Neutral, Disagree, Strongly Disagree
+[2026-07-01 02:55:59] [INFO] Found question: 5. I recognize the importance of core/general education courses in developing a well-rounded academic foundation. | Type: multiple_choice | Required: True | Options: Strongly Agree, Agree, Neutral, Disagree, Strongly Disagree
+[2026-07-01 02:55:59] [INFO] Reached final page (Submit button detected). Scan complete.
+[2026-07-01 02:55:59] [INFO] Reloading form to clear all temporary dummy data...
+[2026-07-01 02:55:59] [INFO] Navigating to form: https://docs.google.com/forms/d/e/1FAIpQLScZFpP_KlYaIdesBnY2PpqkQDYCqtq_LlHrLohaEBuEbok6RQ/viewform?usp=dialog
+[2026-07-01 02:56:00] [INFO] Generated raw data template in the textbox.
+[2026-07-01 03:06:12] [INFO] Closing browser...
+[2026-07-01 03:06:19] [INFO] Application initialized. Ready to automate.
+[2026-07-01 03:06:28] [INFO] Launching Chrome/Chromium browser...
+[2026-07-01 03:06:33] [INFO] Navigating to form: https://docs.google.com/forms/d/e/1FAIpQLScZFpP_KlYaIdesBnY2PpqkQDYCqtq_LlHrLohaEBuEbok6RQ/viewform?usp=dialog
+[2026-07-01 03:06:38] [INFO] Starting Phase 1: Full Form Scan
+[2026-07-01 03:06:38] [INFO] Scanning Page 1...
+[2026-07-01 03:06:39] [INFO] Found question: Name (Last name, First name, M.I.) | Type: short_answer | Required: True
+[2026-07-01 03:06:39] [INFO] Found question: Gender | Type: multiple_choice | Required: True | Options: Male, Female
+[2026-07-01 03:06:39] [INFO] Found question: Age | Type: multiple_choice | Required: True | Options: 18 years old, 19 years old, 20 years old, 21 years old and above
+[2026-07-01 03:06:39] [INFO] Found question: SHS - Strand | Type: multiple_choice | Required: True | Options: Accountancy, Business, and Management (ABM), Non - ABM
+[2026-07-01 03:06:39] [INFO] Found question: Cumulative Grade Point Average (GPA) | Type: multiple_choice | Required: True | Options: Below 2.0, 2.0 - 2.49, 2.5 - 2.99, 3.0 - 3.49, 3.5 or above
+[2026-07-01 03:06:39] [INFO] Building answer plan for Page 1...
+[2026-07-01 03:06:39] [INFO] Planned dummy answer (required): Name (Last name, First name, M.I.) -> Test User
+[2026-07-01 03:06:39] [INFO] Planned dummy answer (required): Gender -> Male
+[2026-07-01 03:06:39] [INFO] Planned dummy answer (required): Age -> 21 years old and above
+[2026-07-01 03:06:39] [INFO] Planned dummy answer (required): SHS - Strand -> Accountancy, Business, and Management (ABM)
+[2026-07-01 03:06:39] [INFO] Planned dummy answer (required): Cumulative Grade Point Average (GPA) -> 3.5 or above
+[2026-07-01 03:06:39] [INFO] Filling required fields for Page 1...
+[2026-07-01 03:06:39] [INFO] Located container using parenthesis prefix: 'Name'
+[2026-07-01 03:06:39] [INFO] Successfully filled text field with: 'Test User'
+[2026-07-01 03:06:40] [INFO] Validating Page 1...
+[2026-07-01 03:06:40] [INFO] Clicking Next...
+[2026-07-01 03:06:42] [INFO] Scanning Page 2...
+[2026-07-01 03:06:43] [INFO] Found question: 1. I consistently perform well in my major courses. | Type: multiple_choice | Required: True | Options: Strongly Agree, Agree, Neutral, Disagree, Strongly Disagree
+[2026-07-01 03:06:43] [INFO] Found question: 2. I am able to understand and apply the concepts taught in my major courses effectively. | Type: multiple_choice | Required: True | Options: Strongly Agree, Agree, Neutral, Disagree, Strongly Disagree
+[2026-07-01 03:06:43] [INFO] Found question: 3. I feel confident in my ability to perform tasks and assignments related to my major courses. | Type: multiple_choice | Required: True | Options: Strongly Agree, Agree, Neutral, Disagree, Strongly Disagree
+[2026-07-01 03:06:43] [INFO] Found question: 4. I actively participate in discussions and activities related to my major courses. | Type: multiple_choice | Required: True | Options: Strongly Agree, Agree, Neutral, Disagree, Strongly Disagree
+[2026-07-01 03:06:43] [INFO] Found question: 5. I seek additional resources and engage in extra study to enhance my performance in major courses. | Type: multiple_choice | Required: True | Options: Strongly Agree, Agree, Neutral, Disagree, Strongly Disagree
+[2026-07-01 03:06:43] [INFO] Building answer plan for Page 2...
+[2026-07-01 03:06:43] [INFO] Planned dummy answer (required): 1. I consistently perform well in my major courses. -> Strongly Agree
+[2026-07-01 03:06:43] [INFO] Planned dummy answer (required): 2. I am able to understand and apply the concepts taught in my major courses effectively. -> Strongly Agree
+[2026-07-01 03:06:43] [INFO] Planned dummy answer (required): 3. I feel confident in my ability to perform tasks and assignments related to my major courses. -> Strongly Agree
+[2026-07-01 03:06:43] [INFO] Planned dummy answer (required): 4. I actively participate in discussions and activities related to my major courses. -> Strongly Agree
+[2026-07-01 03:06:43] [INFO] Planned dummy answer (required): 5. I seek additional resources and engage in extra study to enhance my performance in major courses. -> Strongly Agree
+[2026-07-01 03:06:43] [INFO] Filling required fields for Page 2...
+[2026-07-01 03:06:44] [INFO] Validating Page 2...
+[2026-07-01 03:06:44] [INFO] Clicking Next...
+[2026-07-01 03:06:47] [INFO] Scanning Page 3...
+[2026-07-01 03:06:47] [INFO] Found question: 1. I consistently perform well in my core/general education courses. | Type: multiple_choice | Required: True | Options: Strongly Agree, Agree, Neutral, Disagree, Strongly Disagree
+[2026-07-01 03:06:47] [INFO] Found question: 2. I find the concepts taught in my core/general education courses relevant to my academic goals. | Type: multiple_choice | Required: True | Options: Strongly Agree, Agree, Neutral, Disagree, Strongly Disagree
+[2026-07-01 03:06:47] [INFO] Found question: 3. I feel motivated to excel in my core/general education courses. | Type: multiple_choice | Required: True | Options: Strongly Agree, Agree, Neutral, Disagree, Strongly Disagree
+[2026-07-01 03:06:47] [INFO] Found question: 4. I actively participate in discussions and activities related to my core/general education courses. | Type: multiple_choice | Required: True | Options: Strongly Agree, Agree, Neutral, Disagree, Strongly Disagree
+[2026-07-01 03:06:47] [INFO] Found question: 5. I recognize the importance of core/general education courses in developing a well-rounded academic foundation. | Type: multiple_choice | Required: True | Options: Strongly Agree, Agree, Neutral, Disagree, Strongly Disagree
+[2026-07-01 03:06:47] [INFO] Reached final page (Submit button detected). Scan complete.
+[2026-07-01 03:06:47] [INFO] Reloading form to clear all temporary dummy data...
+[2026-07-01 03:06:47] [INFO] Navigating to form: https://docs.google.com/forms/d/e/1FAIpQLScZFpP_KlYaIdesBnY2PpqkQDYCqtq_LlHrLohaEBuEbok6RQ/viewform?usp=dialog
+[2026-07-01 03:06:49] [INFO] Generated raw data template in the textbox.
+[2026-07-01 03:08:38] [INFO] Detected 2 record(s) to process.
+[2026-07-01 03:08:38] [INFO] === Processing Record 1/2 ===
+[2026-07-01 03:08:38] [INFO] Loading/reloading form for Record 1...
+[2026-07-01 03:08:38] [INFO] Navigating to form: https://docs.google.com/forms/d/e/1FAIpQLScZFpP_KlYaIdesBnY2PpqkQDYCqtq_LlHrLohaEBuEbok6RQ/viewform?usp=dialog
+[2026-07-01 03:08:38] [ERROR] Filling failed: cannot switch to a different thread (which happens to have exited)
+[2026-07-01 03:09:23] [INFO] Closing browser...
+[2026-07-01 03:09:31] [INFO] Application initialized. Ready to automate.
+[2026-07-01 03:09:33] [INFO] Launching Chrome/Chromium browser...
+[2026-07-01 03:09:33] [INFO] Navigating to form: https://docs.google.com/forms/d/e/1FAIpQLScZFpP_KlYaIdesBnY2PpqkQDYCqtq_LlHrLohaEBuEbok6RQ/viewform?usp=dialog
+[2026-07-01 03:09:39] [INFO] Starting Phase 1: Full Form Scan
+[2026-07-01 03:09:39] [INFO] Scanning Page 1...
+[2026-07-01 03:09:40] [INFO] Found question: Name (Last name, First name, M.I.) | Type: short_answer | Required: True
+[2026-07-01 03:09:40] [INFO] Found question: Gender | Type: multiple_choice | Required: True | Options: Male, Female
+[2026-07-01 03:09:40] [INFO] Found question: Age | Type: multiple_choice | Required: True | Options: 18 years old, 19 years old, 20 years old, 21 years old and above
+[2026-07-01 03:09:40] [INFO] Found question: SHS - Strand | Type: multiple_choice | Required: True | Options: Accountancy, Business, and Management (ABM), Non - ABM
+[2026-07-01 03:09:40] [INFO] Found question: Cumulative Grade Point Average (GPA) | Type: multiple_choice | Required: True | Options: Below 2.0, 2.0 - 2.49, 2.5 - 2.99, 3.0 - 3.49, 3.5 or above
+[2026-07-01 03:09:40] [INFO] Building answer plan for Page 1...
+[2026-07-01 03:09:40] [INFO] Planned dummy answer (required): Name (Last name, First name, M.I.) -> Test User
+[2026-07-01 03:09:40] [INFO] Planned dummy answer (required): Gender -> Male
+[2026-07-01 03:09:40] [INFO] Planned dummy answer (required): Age -> 21 years old and above
+[2026-07-01 03:09:40] [INFO] Planned dummy answer (required): SHS - Strand -> Accountancy, Business, and Management (ABM)
+[2026-07-01 03:09:40] [INFO] Planned dummy answer (required): Cumulative Grade Point Average (GPA) -> 3.5 or above
+[2026-07-01 03:09:40] [INFO] Filling required fields for Page 1...
+[2026-07-01 03:09:40] [INFO] Located container using parenthesis prefix: 'Name'
+[2026-07-01 03:09:40] [INFO] Successfully filled text field with: 'Test User'
+[2026-07-01 03:09:41] [INFO] Validating Page 1...
+[2026-07-01 03:09:41] [INFO] Clicking Next...
+[2026-07-01 03:09:44] [INFO] Scanning Page 2...
+[2026-07-01 03:09:44] [INFO] Found question: 1. I consistently perform well in my major courses. | Type: multiple_choice | Required: True | Options: Strongly Agree, Agree, Neutral, Disagree, Strongly Disagree
+[2026-07-01 03:09:44] [INFO] Found question: 2. I am able to understand and apply the concepts taught in my major courses effectively. | Type: multiple_choice | Required: True | Options: Strongly Agree, Agree, Neutral, Disagree, Strongly Disagree
+[2026-07-01 03:09:44] [INFO] Found question: 3. I feel confident in my ability to perform tasks and assignments related to my major courses. | Type: multiple_choice | Required: True | Options: Strongly Agree, Agree, Neutral, Disagree, Strongly Disagree
+[2026-07-01 03:09:44] [INFO] Found question: 4. I actively participate in discussions and activities related to my major courses. | Type: multiple_choice | Required: True | Options: Strongly Agree, Agree, Neutral, Disagree, Strongly Disagree
+[2026-07-01 03:09:44] [INFO] Found question: 5. I seek additional resources and engage in extra study to enhance my performance in major courses. | Type: multiple_choice | Required: True | Options: Strongly Agree, Agree, Neutral, Disagree, Strongly Disagree
+[2026-07-01 03:09:44] [INFO] Building answer plan for Page 2...
+[2026-07-01 03:09:44] [INFO] Planned dummy answer (required): 1. I consistently perform well in my major courses. -> Strongly Agree
+[2026-07-01 03:09:44] [INFO] Planned dummy answer (required): 2. I am able to understand and apply the concepts taught in my major courses effectively. -> Strongly Agree
+[2026-07-01 03:09:44] [INFO] Planned dummy answer (required): 3. I feel confident in my ability to perform tasks and assignments related to my major courses. -> Strongly Agree
+[2026-07-01 03:09:44] [INFO] Planned dummy answer (required): 4. I actively participate in discussions and activities related to my major courses. -> Strongly Agree
+[2026-07-01 03:09:44] [INFO] Planned dummy answer (required): 5. I seek additional resources and engage in extra study to enhance my performance in major courses. -> Strongly Agree
+[2026-07-01 03:09:44] [INFO] Filling required fields for Page 2...
+[2026-07-01 03:09:45] [INFO] Validating Page 2...
+[2026-07-01 03:09:45] [INFO] Clicking Next...
+[2026-07-01 03:09:48] [INFO] Scanning Page 3...
+[2026-07-01 03:09:48] [INFO] Found question: 1. I consistently perform well in my core/general education courses. | Type: multiple_choice | Required: True | Options: Strongly Agree, Agree, Neutral, Disagree, Strongly Disagree
+[2026-07-01 03:09:48] [INFO] Found question: 2. I find the concepts taught in my core/general education courses relevant to my academic goals. | Type: multiple_choice | Required: True | Options: Strongly Agree, Agree, Neutral, Disagree, Strongly Disagree
+[2026-07-01 03:09:48] [INFO] Found question: 3. I feel motivated to excel in my core/general education courses. | Type: multiple_choice | Required: True | Options: Strongly Agree, Agree, Neutral, Disagree, Strongly Disagree
+[2026-07-01 03:09:48] [INFO] Found question: 4. I actively participate in discussions and activities related to my core/general education courses. | Type: multiple_choice | Required: True | Options: Strongly Agree, Agree, Neutral, Disagree, Strongly Disagree
+[2026-07-01 03:09:48] [INFO] Found question: 5. I recognize the importance of core/general education courses in developing a well-rounded academic foundation. | Type: multiple_choice | Required: True | Options: Strongly Agree, Agree, Neutral, Disagree, Strongly Disagree
+[2026-07-01 03:09:48] [INFO] Reached final page (Submit button detected). Scan complete.
+[2026-07-01 03:09:48] [INFO] Reloading form to clear all temporary dummy data...
+[2026-07-01 03:09:48] [INFO] Navigating to form: https://docs.google.com/forms/d/e/1FAIpQLScZFpP_KlYaIdesBnY2PpqkQDYCqtq_LlHrLohaEBuEbok6RQ/viewform?usp=dialog
+[2026-07-01 03:09:50] [INFO] Generated raw data template in the textbox.
+[2026-07-01 03:09:54] [INFO] Closing browser...
+[2026-07-01 03:09:54] [INFO] Detected 2 record(s) to process.
+[2026-07-01 03:09:54] [INFO] === Processing Record 1/2 ===
+[2026-07-01 03:09:54] [INFO] Loading/reloading form for Record 1...
+[2026-07-01 03:09:54] [INFO] Launching Chrome/Chromium browser...
+[2026-07-01 03:09:55] [INFO] Navigating to form: https://docs.google.com/forms/d/e/1FAIpQLScZFpP_KlYaIdesBnY2PpqkQDYCqtq_LlHrLohaEBuEbok6RQ/viewform?usp=dialog
+[2026-07-01 03:10:01] [INFO] Filling Form for Record 1...
+[2026-07-01 03:10:01] [INFO] --- Filling Page 1 ---
+[2026-07-01 03:10:01] [INFO] Located container using parenthesis prefix: 'Name'
+[2026-07-01 03:10:01] [INFO] Successfully filled text field with: 'Doe, John A.'
+[2026-07-01 03:10:04] [INFO] --- Filling Page 2 ---
+[2026-07-01 03:10:08] [INFO] --- Filling Page 3 ---
+[2026-07-01 03:10:09] [INFO] Record 1 filled. Waiting for you to review and submit in the browser.
+[2026-07-01 03:10:09] [INFO] === Processing Record 2/2 ===
+[2026-07-01 03:10:09] [INFO] Loading/reloading form for Record 2...
+[2026-07-01 03:10:09] [INFO] Navigating to form: https://docs.google.com/forms/d/e/1FAIpQLScZFpP_KlYaIdesBnY2PpqkQDYCqtq_LlHrLohaEBuEbok6RQ/viewform?usp=dialog
+[2026-07-01 03:10:11] [INFO] Filling Form for Record 2...
+[2026-07-01 03:10:11] [INFO] --- Filling Page 1 ---
+[2026-07-01 03:10:11] [INFO] Located container using parenthesis prefix: 'Name'
+[2026-07-01 03:10:11] [INFO] Successfully filled text field with: 'Smith, Jane B.'
+[2026-07-01 03:10:15] [INFO] --- Filling Page 2 ---
+[2026-07-01 03:10:19] [INFO] --- Filling Page 3 ---
+[2026-07-01 03:10:20] [INFO] Record 2 filled. Waiting for you to review and submit in the browser.
+[2026-07-01 03:10:36] [INFO] Closing browser...
+[2026-07-01 03:10:36] [INFO] Detected 2 record(s) to process.
+[2026-07-01 03:10:36] [INFO] === Processing Record 1/2 ===
+[2026-07-01 03:10:36] [INFO] Loading/reloading form for Record 1...
+[2026-07-01 03:10:36] [INFO] Launching Chrome/Chromium browser...
+[2026-07-01 03:10:36] [INFO] Navigating to form: https://docs.google.com/forms/d/e/1FAIpQLScZFpP_KlYaIdesBnY2PpqkQDYCqtq_LlHrLohaEBuEbok6RQ/viewform?usp=dialog
+[2026-07-01 03:10:42] [INFO] Filling Form for Record 1...
+[2026-07-01 03:10:42] [INFO] --- Filling Page 1 ---
+[2026-07-01 03:10:42] [INFO] Located container using parenthesis prefix: 'Name'
+[2026-07-01 03:10:42] [INFO] Successfully filled text field with: 'Doe, John A.'
+[2026-07-01 03:10:46] [INFO] --- Filling Page 2 ---
+[2026-07-01 03:10:50] [INFO] --- Filling Page 3 ---
+[2026-07-01 03:10:51] [INFO] Submitting Record 1...
+[2026-07-01 03:10:51] [INFO] Attempting to submit form...
+[2026-07-01 03:10:53] [INFO] Record 1 submitted successfully!
+[2026-07-01 03:10:53] [INFO] === Processing Record 2/2 ===
+[2026-07-01 03:10:53] [INFO] Loading/reloading form for Record 2...
+[2026-07-01 03:10:53] [INFO] Navigating to form: https://docs.google.com/forms/d/e/1FAIpQLScZFpP_KlYaIdesBnY2PpqkQDYCqtq_LlHrLohaEBuEbok6RQ/viewform?usp=dialog
+[2026-07-01 03:10:55] [INFO] Filling Form for Record 2...
+[2026-07-01 03:10:55] [INFO] --- Filling Page 1 ---
+[2026-07-01 03:10:55] [INFO] Located container using parenthesis prefix: 'Name'
+[2026-07-01 03:10:55] [INFO] Successfully filled text field with: 'Smith, Jane B.'
+[2026-07-01 03:10:58] [INFO] --- Filling Page 2 ---
+[2026-07-01 03:11:02] [INFO] --- Filling Page 3 ---
+[2026-07-01 03:11:03] [INFO] Submitting Record 2...
+[2026-07-01 03:11:03] [INFO] Attempting to submit form...
+[2026-07-01 03:11:05] [INFO] Record 2 submitted successfully!
+[2026-07-01 03:11:05] [INFO] All records processed successfully!
+[2026-07-01 03:16:13] [INFO] Closing browser...
+[2026-07-01 03:30:56] [INFO] Application initialized. Ready to automate.
+[2026-07-01 03:35:28] [INFO] Application initialized. Ready to automate.
+[2026-07-01 03:35:46] [INFO] Launching Chrome/Chromium browser...
+[2026-07-01 03:35:48] [INFO] Navigating to form: https://docs.google.com/forms/d/e/1FAIpQLScZFpP_KlYaIdesBnY2PpqkQDYCqtq_LlHrLohaEBuEbok6RQ/viewform?usp=dialog
+[2026-07-01 03:35:54] [INFO] Starting Phase 1: Full Form Scan
+[2026-07-01 03:35:54] [INFO] Scanning Page 1...
+[2026-07-01 03:35:54] [INFO] Found question: Name (Last name, First name, M.I.) | Type: short_answer | Required: True
+[2026-07-01 03:35:54] [INFO] Found question: Gender | Type: multiple_choice | Required: True | Options: Male, Female
+[2026-07-01 03:35:54] [INFO] Found question: Age | Type: multiple_choice | Required: True | Options: 18 years old, 19 years old, 20 years old, 21 years old and above
+[2026-07-01 03:35:54] [INFO] Found question: SHS - Strand | Type: multiple_choice | Required: True | Options: Accountancy, Business, and Management (ABM), Non - ABM
+[2026-07-01 03:35:54] [INFO] Found question: Cumulative Grade Point Average (GPA) | Type: multiple_choice | Required: True | Options: Below 2.0, 2.0 - 2.49, 2.5 - 2.99, 3.0 - 3.49, 3.5 or above
+[2026-07-01 03:35:54] [INFO] Building answer plan for Page 1...
+[2026-07-01 03:35:54] [INFO] Planned dummy answer (required): Name (Last name, First name, M.I.) -> Test User
+[2026-07-01 03:35:54] [INFO] Planned dummy answer (required): Gender -> Male
+[2026-07-01 03:35:54] [INFO] Planned dummy answer (required): Age -> 21 years old and above
+[2026-07-01 03:35:54] [INFO] Planned dummy answer (required): SHS - Strand -> Accountancy, Business, and Management (ABM)
+[2026-07-01 03:35:54] [INFO] Planned dummy answer (required): Cumulative Grade Point Average (GPA) -> 3.5 or above
+[2026-07-01 03:35:54] [INFO] Filling required fields for Page 1...
+[2026-07-01 03:35:54] [INFO] Located container using parenthesis prefix: 'Name'
+[2026-07-01 03:35:54] [INFO] Successfully filled text field with: 'Test User'
+[2026-07-01 03:35:55] [INFO] Validating Page 1...
+[2026-07-01 03:35:55] [INFO] Clicking Next...
+[2026-07-01 03:35:58] [INFO] Scanning Page 2...
+[2026-07-01 03:35:58] [INFO] Found question: 1. I consistently perform well in my major courses. | Type: multiple_choice | Required: True | Options: Strongly Agree, Agree, Neutral, Disagree, Strongly Disagree
+[2026-07-01 03:35:58] [INFO] Found question: 2. I am able to understand and apply the concepts taught in my major courses effectively. | Type: multiple_choice | Required: True | Options: Strongly Agree, Agree, Neutral, Disagree, Strongly Disagree
+[2026-07-01 03:35:58] [INFO] Found question: 3. I feel confident in my ability to perform tasks and assignments related to my major courses. | Type: multiple_choice | Required: True | Options: Strongly Agree, Agree, Neutral, Disagree, Strongly Disagree
+[2026-07-01 03:35:58] [INFO] Found question: 4. I actively participate in discussions and activities related to my major courses. | Type: multiple_choice | Required: True | Options: Strongly Agree, Agree, Neutral, Disagree, Strongly Disagree
+[2026-07-01 03:35:58] [INFO] Found question: 5. I seek additional resources and engage in extra study to enhance my performance in major courses. | Type: multiple_choice | Required: True | Options: Strongly Agree, Agree, Neutral, Disagree, Strongly Disagree
+[2026-07-01 03:35:58] [INFO] Building answer plan for Page 2...
+[2026-07-01 03:35:58] [INFO] Planned dummy answer (required): 1. I consistently perform well in my major courses. -> Strongly Agree
+[2026-07-01 03:35:58] [INFO] Planned dummy answer (required): 2. I am able to understand and apply the concepts taught in my major courses effectively. -> Strongly Agree
+[2026-07-01 03:35:58] [INFO] Planned dummy answer (required): 3. I feel confident in my ability to perform tasks and assignments related to my major courses. -> Strongly Agree
+[2026-07-01 03:35:58] [INFO] Planned dummy answer (required): 4. I actively participate in discussions and activities related to my major courses. -> Strongly Agree
+[2026-07-01 03:35:58] [INFO] Planned dummy answer (required): 5. I seek additional resources and engage in extra study to enhance my performance in major courses. -> Strongly Agree
+[2026-07-01 03:35:58] [INFO] Filling required fields for Page 2...
+[2026-07-01 03:35:59] [INFO] Validating Page 2...
+[2026-07-01 03:35:59] [INFO] Clicking Next...
+[2026-07-01 03:36:02] [INFO] Scanning Page 3...
+[2026-07-01 03:36:03] [INFO] Found question: 1. I consistently perform well in my core/general education courses. | Type: multiple_choice | Required: True | Options: Strongly Agree, Agree, Neutral, Disagree, Strongly Disagree
+[2026-07-01 03:36:03] [INFO] Found question: 2. I find the concepts taught in my core/general education courses relevant to my academic goals. | Type: multiple_choice | Required: True | Options: Strongly Agree, Agree, Neutral, Disagree, Strongly Disagree
+[2026-07-01 03:36:03] [INFO] Found question: 3. I feel motivated to excel in my core/general education courses. | Type: multiple_choice | Required: True | Options: Strongly Agree, Agree, Neutral, Disagree, Strongly Disagree
+[2026-07-01 03:36:03] [INFO] Found question: 4. I actively participate in discussions and activities related to my core/general education courses. | Type: multiple_choice | Required: True | Options: Strongly Agree, Agree, Neutral, Disagree, Strongly Disagree
+[2026-07-01 03:36:03] [INFO] Found question: 5. I recognize the importance of core/general education courses in developing a well-rounded academic foundation. | Type: multiple_choice | Required: True | Options: Strongly Agree, Agree, Neutral, Disagree, Strongly Disagree
+[2026-07-01 03:36:03] [INFO] Reached final page (Submit button detected). Scan complete.
+[2026-07-01 03:36:03] [INFO] Reloading form to clear all temporary dummy data...
+[2026-07-01 03:36:03] [INFO] Navigating to form: https://docs.google.com/forms/d/e/1FAIpQLScZFpP_KlYaIdesBnY2PpqkQDYCqtq_LlHrLohaEBuEbok6RQ/viewform?usp=dialog
+[2026-07-01 03:36:04] [INFO] Generated raw data template in the textbox.
+[2026-07-01 03:36:22] [INFO] Closing browser...
+[2026-07-01 03:36:22] [INFO] Detected 2 record(s) to process.
+[2026-07-01 03:36:22] [INFO] === Processing Record 1/2 ===
+[2026-07-01 03:36:22] [INFO] Loading/reloading form for Record 1...
+[2026-07-01 03:36:22] [INFO] Launching Chrome/Chromium browser...
+[2026-07-01 03:36:22] [INFO] Navigating to form: https://docs.google.com/forms/d/e/1FAIpQLScZFpP_KlYaIdesBnY2PpqkQDYCqtq_LlHrLohaEBuEbok6RQ/viewform?usp=dialog
+[2026-07-01 03:36:28] [INFO] Filling Form for Record 1...
+[2026-07-01 03:36:28] [INFO] --- Filling Page 1 ---
+[2026-07-01 03:36:29] [INFO] Located container using parenthesis prefix: 'Name'
+[2026-07-01 03:36:29] [INFO] Successfully filled text field with: 'Kolot, Geloi'
+[2026-07-01 03:36:32] [INFO] --- Filling Page 2 ---
+[2026-07-01 03:36:36] [INFO] --- Filling Page 3 ---
+[2026-07-01 03:36:37] [INFO] Submitting Record 1...
+[2026-07-01 03:36:37] [INFO] Attempting to submit form...
+[2026-07-01 03:36:39] [INFO] Record 1 submitted successfully!
+[2026-07-01 03:36:39] [INFO] === Processing Record 2/2 ===
+[2026-07-01 03:36:39] [INFO] Loading/reloading form for Record 2...
+[2026-07-01 03:36:39] [INFO] Navigating to form: https://docs.google.com/forms/d/e/1FAIpQLScZFpP_KlYaIdesBnY2PpqkQDYCqtq_LlHrLohaEBuEbok6RQ/viewform?usp=dialog
+[2026-07-01 03:36:41] [INFO] Filling Form for Record 2...
+[2026-07-01 03:36:41] [INFO] --- Filling Page 1 ---
+[2026-07-01 03:36:41] [INFO] Located container using parenthesis prefix: 'Name'
+[2026-07-01 03:36:41] [INFO] Successfully filled text field with: 'Hakiro, Amlani'
+[2026-07-01 03:36:44] [INFO] --- Filling Page 2 ---
+[2026-07-01 03:36:48] [INFO] --- Filling Page 3 ---
+[2026-07-01 03:36:49] [INFO] Submitting Record 2...
+[2026-07-01 03:36:49] [INFO] Attempting to submit form...
+[2026-07-01 03:36:51] [INFO] Record 2 submitted successfully!
+[2026-07-01 03:36:51] [INFO] All records processed successfully!
+[2026-07-01 03:39:25] [INFO] Cleared all fields.
+[2026-07-01 03:39:28] [INFO] Cleared all fields.
+[2026-07-01 03:39:28] [INFO] Cleared all fields.
+[2026-07-01 03:39:28] [INFO] Cleared all fields.
+[2026-07-01 03:39:29] [INFO] Cleared all fields.
+[2026-07-01 03:39:29] [INFO] Cleared all fields.
+[2026-07-01 03:39:30] [INFO] Cleared all fields.
+[2026-07-01 03:39:33] [INFO] Closing browser...

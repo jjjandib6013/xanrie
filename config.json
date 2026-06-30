@@ -1,0 +1,27 @@
+{
+  "auto_submit": false,
+  "default_timeout": 15000,
+  "fuzzy_match_threshold": 0.75,
+  "max_retries": 3,
+  "aliases": {
+    "student no": "student id",
+    "id number": "student id",
+    "full name": "name",
+    "email address": "email",
+    "course name": "course",
+    "class section": "section",
+    "notes": "remarks",
+    "comments": "remarks"
+  },
+  "dummy_data": {
+    "name": "Test User",
+    "email": "test@example.com",
+    "student id": "202400001",
+    "age": "21",
+    "course": "BS Information Technology",
+    "section": "IT-3A",
+    "phone": "09123456789",
+    "remarks": "Test response only",
+    "text": "Test response only"
+  }
+}

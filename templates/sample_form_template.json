@@ -1,0 +1,36 @@
+{
+  "form_id": "sample_form_id",
+  "form_title": "Student Attendance Form",
+  "mappings": {
+    "Full Name": {
+      "input_key": "Name",
+      "type": "short_answer",
+      "required": true,
+      "aliases": [
+        "name",
+        "full name",
+        "student name"
+      ]
+    },
+    "Student ID Number": {
+      "input_key": "Student ID",
+      "type": "short_answer",
+      "required": true,
+      "aliases": [
+        "student no",
+        "id number",
+        "student number"
+      ]
+    },
+    "Remarks": {
+      "input_key": "Remarks",
+      "type": "paragraph",
+      "required": false,
+      "aliases": [
+        "notes",
+        "comments",
+        "remarks"
+      ]
+    }
+  }
+}

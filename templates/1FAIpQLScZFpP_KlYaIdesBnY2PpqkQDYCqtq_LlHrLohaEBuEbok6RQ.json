@@ -1,0 +1,53 @@
+{
+  "form_id": "1FAIpQLScZFpP_KlYaIdesBnY2PpqkQDYCqtq_LlHrLohaEBuEbok6RQ",
+  "form_title": "A survey about \"Comparison On The Academic Performance Of Abm And Non – ABM Custom Students In University Of Cebu – Lapu-Lapu And Mandaue\"",
+  "mappings": {
+    "Name\n(Last name, First name, M.I.)\n(optional)": {
+      "input_key": "Name\n(Last name, First name, M.I.)\n(optional)",
+      "type": "short_answer",
+      "required": true,
+      "aliases": []
+    },
+    "Gender": {
+      "input_key": "Gender",
+      "type": "multiple_choice",
+      "required": true,
+      "aliases": [
+        "Male",
+        "Female"
+      ]
+    },
+    "Age": {
+      "input_key": "Age",
+      "type": "multiple_choice",
+      "required": true,
+      "aliases": [
+        "18 years old",
+        "19 years old",
+        "20 years old",
+        "21 years old and above"
+      ]
+    },
+    "SHS - Strand": {
+      "input_key": "SHS - Strand",
+      "type": "multiple_choice",
+      "required": true,
+      "aliases": [
+        "Accountancy, Business, and Management (ABM)",
+        "Non - ABM"
+      ]
+    },
+    "Cumulative Grade Point Average (GPA)": {
+      "input_key": "Cumulative Grade Point Average (GPA)",
+      "type": "multiple_choice",
+      "required": true,
+      "aliases": [
+        "Below 2.0",
+        "2.0 - 2.49",
+        "2.5 - 2.99",
+        "3.0 - 3.49",
+        "3.5 or above"
+      ]
+    }
+  }
+}
