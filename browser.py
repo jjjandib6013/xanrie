@@ -306,16 +306,26 @@ class BrowserController:
                     else:
                         field_type = "short_answer"
 
-            # Get entry_id
+            # Get entry_id (Try parsing data-params first, fallback to input elements)
             entry_id = None
             try:
-                entry_input = container.query_selector('input[name^="entry."]')
-                if entry_input:
-                    entry_id = entry_input.get_attribute("name")
-                else:
-                    textarea_el = container.query_selector('textarea[name^="entry."]')
-                    if textarea_el:
-                        entry_id = textarea_el.get_attribute("name")
+                data_params = container.get_attribute("data-params")
+                if data_params:
+                    match = re.search(r'\[\[(\d+),', data_params)
+                    if match:
+                        entry_id = f"entry.{match.group(1)}"
+                
+                if not entry_id:
+                    entry_input = container.query_selector('input[name^="entry."]')
+                    if entry_input:
+                        name = entry_input.get_attribute("name")
+                        if name.endswith("_sentinel"):
+                            name = name.replace("_sentinel", "")
+                        entry_id = name
+                    else:
+                        textarea_el = container.query_selector('textarea[name^="entry."]')
+                        if textarea_el:
+                            entry_id = textarea_el.get_attribute("name")
             except Exception:
                 pass
 
@@ -1078,6 +1088,7 @@ class BrowserController:
         response_url = self.get_form_response_url(url)
         if self.logger:
             self.logger.info(f"Posting directly to {response_url}")
+            self.logger.info(f"POST Payload: {payload}")
             
         data = urllib.parse.urlencode(payload).encode('utf-8')
         headers = {

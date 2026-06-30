@@ -4762,3 +4762,56 @@ Call log:
 [2026-07-01 06:40:09] [INFO] Submitting Record 1 directly via instant POST...
 [2026-07-01 06:40:09] [ERROR] Filling failed: 'title'
 [2026-07-01 06:40:40] [INFO] Closing browser...
+[2026-07-01 06:41:22] [INFO] Application initialized. Ready to automate.
+[2026-07-01 06:41:32] [INFO] Launching Chrome/Chromium browser...
+[2026-07-01 06:41:32] [INFO] Navigating to form: https://docs.google.com/forms/d/e/1FAIpQLScZFpP_KlYaIdesBnY2PpqkQDYCqtq_LlHrLohaEBuEbok6RQ/viewform?usp=preview
+[2026-07-01 06:41:38] [INFO] Starting Phase 1: Full Form Scan
+[2026-07-01 06:41:38] [INFO] Scanning Page 1...
+[2026-07-01 06:41:39] [INFO] Found question: Name (Last name, First name, M.I.) | Type: short_answer | Required: True
+[2026-07-01 06:41:39] [INFO] Found question: Gender | Type: multiple_choice | Required: True | Options: Male, Female
+[2026-07-01 06:41:39] [INFO] Found question: Age | Type: multiple_choice | Required: True | Options: 18 years old, 19 years old, 20 years old, 21 years old and above
+[2026-07-01 06:41:39] [INFO] Found question: SHS - Strand | Type: multiple_choice | Required: True | Options: Accountancy, Business, and Management (ABM), Non - ABM
+[2026-07-01 06:41:39] [INFO] Found question: Cumulative Grade Point Average (GPA) | Type: multiple_choice | Required: True | Options: Below 2.0, 2.0 - 2.49, 2.5 - 2.99, 3.0 - 3.49, 3.5 or above
+[2026-07-01 06:41:39] [INFO] Building answer plan for Page 1 (Attempt 1)...
+[2026-07-01 06:41:39] [INFO] Planned dummy answer (required): Name (Last name, First name, M.I.) -> Test User
+[2026-07-01 06:41:39] [INFO] Planned dummy answer (required): Gender -> Male
+[2026-07-01 06:41:39] [INFO] Planned dummy answer (required): Age -> 21 years old and above
+[2026-07-01 06:41:39] [INFO] Planned dummy answer (required): SHS - Strand -> Accountancy, Business, and Management (ABM)
+[2026-07-01 06:41:39] [INFO] Planned dummy answer (required): Cumulative Grade Point Average (GPA) -> 3.5 or above
+[2026-07-01 06:41:39] [INFO] Filling fields for Page 1...
+[2026-07-01 06:41:39] [INFO] Located container using parenthesis prefix: 'Name'
+[2026-07-01 06:41:39] [INFO] Successfully filled text field with: 'Test User'
+[2026-07-01 06:41:40] [INFO] Clicking Next...
+[2026-07-01 06:41:45] [INFO] Scanning Page 2...
+[2026-07-01 06:41:45] [INFO] Found question: 1. I consistently perform well in my major courses. | Type: multiple_choice | Required: True | Options: Strongly Agree, Agree, Neutral, Disagree, Strongly Disagree
+[2026-07-01 06:41:45] [INFO] Found question: 2. I am able to understand and apply the concepts taught in my major courses effectively. | Type: multiple_choice | Required: True | Options: Strongly Agree, Agree, Neutral, Disagree, Strongly Disagree
+[2026-07-01 06:41:45] [INFO] Found question: 3. I feel confident in my ability to perform tasks and assignments related to my major courses. | Type: multiple_choice | Required: True | Options: Strongly Agree, Agree, Neutral, Disagree, Strongly Disagree
+[2026-07-01 06:41:45] [INFO] Found question: 4. I actively participate in discussions and activities related to my major courses. | Type: multiple_choice | Required: True | Options: Strongly Agree, Agree, Neutral, Disagree, Strongly Disagree
+[2026-07-01 06:41:45] [INFO] Found question: 5. I seek additional resources and engage in extra study to enhance my performance in major courses. | Type: multiple_choice | Required: True | Options: Strongly Agree, Agree, Neutral, Disagree, Strongly Disagree
+[2026-07-01 06:41:45] [INFO] Building answer plan for Page 2 (Attempt 1)...
+[2026-07-01 06:41:45] [INFO] Planned dummy answer (required): 1. I consistently perform well in my major courses. -> Strongly Agree
+[2026-07-01 06:41:45] [INFO] Planned dummy answer (required): 2. I am able to understand and apply the concepts taught in my major courses effectively. -> Strongly Agree
+[2026-07-01 06:41:45] [INFO] Planned dummy answer (required): 3. I feel confident in my ability to perform tasks and assignments related to my major courses. -> Strongly Agree
+[2026-07-01 06:41:45] [INFO] Planned dummy answer (required): 4. I actively participate in discussions and activities related to my major courses. -> Strongly Agree
+[2026-07-01 06:41:46] [INFO] Planned dummy answer (required): 5. I seek additional resources and engage in extra study to enhance my performance in major courses. -> Strongly Agree
+[2026-07-01 06:41:46] [INFO] Filling fields for Page 2...
+[2026-07-01 06:41:46] [INFO] Clicking Next...
+[2026-07-01 06:41:51] [INFO] Scanning Page 3...
+[2026-07-01 06:41:52] [INFO] Found question: 1. I consistently perform well in my core/general education courses. | Type: multiple_choice | Required: True | Options: Strongly Agree, Agree, Neutral, Disagree, Strongly Disagree
+[2026-07-01 06:41:52] [INFO] Found question: 2. I find the concepts taught in my core/general education courses relevant to my academic goals. | Type: multiple_choice | Required: True | Options: Strongly Agree, Agree, Neutral, Disagree, Strongly Disagree
+[2026-07-01 06:41:52] [INFO] Found question: 3. I feel motivated to excel in my core/general education courses. | Type: multiple_choice | Required: True | Options: Strongly Agree, Agree, Neutral, Disagree, Strongly Disagree
+[2026-07-01 06:41:52] [INFO] Found question: 4. I actively participate in discussions and activities related to my core/general education courses. | Type: multiple_choice | Required: True | Options: Strongly Agree, Agree, Neutral, Disagree, Strongly Disagree
+[2026-07-01 06:41:52] [INFO] Found question: 5. I recognize the importance of core/general education courses in developing a well-rounded academic foundation. | Type: multiple_choice | Required: True | Options: Strongly Agree, Agree, Neutral, Disagree, Strongly Disagree
+[2026-07-01 06:41:52] [INFO] Reached final page (Submit button detected). Scan complete.
+[2026-07-01 06:41:52] [INFO] Reloading form to clear all temporary dummy data...
+[2026-07-01 06:41:52] [INFO] Navigating to form: https://docs.google.com/forms/d/e/1FAIpQLScZFpP_KlYaIdesBnY2PpqkQDYCqtq_LlHrLohaEBuEbok6RQ/viewform?usp=preview
+[2026-07-01 06:41:53] [INFO] Auto-generating 5 synthetic Cebu-localized test records based on scanned structure...
+[2026-07-01 06:42:07] [INFO] Generating 50 Cebu-localized synthetic test records...
+[2026-07-01 06:42:07] [INFO] Synthetic raw text populated successfully.
+[2026-07-01 06:42:09] [INFO] Detected 50 record(s) to process.
+[2026-07-01 06:42:09] [INFO] === Processing Record 1/50 ===
+[2026-07-01 06:42:09] [INFO] Submitting Record 1 directly via instant POST...
+[2026-07-01 06:42:09] [INFO] Posting directly to https://docs.google.com/forms/d/e/1FAIpQLScZFpP_KlYaIdesBnY2PpqkQDYCqtq_LlHrLohaEBuEbok6RQ/formResponse
+[2026-07-01 06:42:13] [ERROR] HTTP Direct POST failed: HTTP Error 400: Bad Request
+[2026-07-01 06:42:13] [ERROR] Filling failed: HTTP Error 400: Bad Request
+[2026-07-01 06:42:41] [INFO] Closing browser...
