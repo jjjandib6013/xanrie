@@ -40,7 +40,7 @@ class FormMapper:
 
         # Pass 1: Map using Template (highest priority)
         for question in form_questions:
-            q_title = question["title"]
+            q_title = question.get("title", question.get("label"))
             q_title_clean = q_title.strip()
             
             temp_mapping = None
@@ -87,7 +87,7 @@ class FormMapper:
 
         # Pass 2: Automatic matching for remaining questions (Exact -> Alias -> Fuzzy)
         for question in form_questions:
-            q_title = question["title"]
+            q_title = question.get("title", question.get("label"))
             if q_title in mapped_fields:
                 continue
                 
@@ -139,7 +139,7 @@ class FormMapper:
         # Identify missing required fields
         missing_required = []
         for question in form_questions:
-            q_title = question["title"]
+            q_title = question.get("title", question.get("label"))
             if question.get("required", False):
                 if q_title not in mapped_fields or not str(mapped_fields[q_title]).strip():
                     missing_required.append(q_title)

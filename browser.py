@@ -323,6 +323,7 @@ class BrowserController:
                 questions.append({
                     "page_number": page_num,
                     "label": label_text,
+                    "title": label_text,
                     "type": field_type,
                     "required": is_required,
                     "options": options,
@@ -353,6 +354,7 @@ class BrowserController:
                     questions.insert(0, {
                         "page_number": page_num,
                         "label": label_text,
+                        "title": label_text,
                         "type": "email",
                         "required": is_req,
                         "options": [],
@@ -396,6 +398,7 @@ class BrowserController:
                         questions.insert(0, {
                             "page_number": page_num,
                             "label": label_name,
+                            "title": label_name,
                             "type": "email",
                             "required": is_req,
                             "options": [],
