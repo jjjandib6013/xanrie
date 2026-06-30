@@ -9,12 +9,13 @@ from parser import FormParser
 from form_mapper import FormMapper
 from template_manager import TemplateManager
 from logger import SubmissionLogger
+import synthetic_generator
 
 # Set appearance and theme
 ctk.set_appearance_mode("Dark")
 ctk.set_default_color_theme("blue")
 
-class GoogleFormAutomationApp(ctk.CTk):
+class XanrieApp(ctk.CTk):
     def __init__(self, config_path="config.json"):
         super().__init__()
 
@@ -141,9 +142,32 @@ class GoogleFormAutomationApp(ctk.CTk):
         self.dummy_data_switch.grid(row=0, column=1, padx=5, pady=5, sticky="w")
         self.dummy_data_switch.select()
 
+        # Synthetic Data Generation Frame
+        synthetic_frame = ctk.CTkFrame(left_panel, fg_color="transparent")
+        synthetic_frame.grid(row=4, column=0, sticky="ew", padx=15, pady=10)
+        synthetic_frame.grid_columnconfigure(0, weight=1)
+        synthetic_frame.grid_columnconfigure(1, weight=1)
+
+        synth_label = ctk.CTkLabel(synthetic_frame, text="Synthetic Test Records:", font=ctk.CTkFont(weight="bold"))
+        synth_label.grid(row=0, column=0, sticky="w", padx=5)
+
+        self.synth_count_combo = ctk.CTkComboBox(synthetic_frame, values=["1", "3", "5", "10", "20", "50"])
+        self.synth_count_combo.grid(row=0, column=1, padx=5, sticky="ew")
+        self.synth_count_combo.set("5")
+
+        self.generate_synth_btn = ctk.CTkButton(
+            synthetic_frame,
+            text="Generate Test Data",
+            command=self.on_generate_synth_click,
+            fg_color="gray30",
+            hover_color="gray45",
+            state="disabled"
+        )
+        self.generate_synth_btn.grid(row=1, column=0, columnspan=2, padx=5, pady=(10, 0), sticky="ew")
+
         # Buttons Grid
         buttons_frame = ctk.CTkFrame(left_panel, fg_color="transparent")
-        buttons_frame.grid(row=4, column=0, sticky="ew", padx=15, pady=10)
+        buttons_frame.grid(row=5, column=0, sticky="ew", padx=15, pady=10)
         buttons_frame.grid_columnconfigure((0, 1), weight=1)
 
         self.scan_btn = ctk.CTkButton(
@@ -192,7 +216,7 @@ class GoogleFormAutomationApp(ctk.CTk):
 
         # Progress Bar
         self.progress_bar = ctk.CTkProgressBar(left_panel)
-        self.progress_bar.grid(row=5, column=0, sticky="ew", padx=20, pady=(5, 15))
+        self.progress_bar.grid(row=6, column=0, sticky="ew", padx=20, pady=(5, 15))
         self.progress_bar.set(0)
 
         # ------------------ RIGHT PANEL ------------------
@@ -399,15 +423,15 @@ class GoogleFormAutomationApp(ctk.CTk):
             self.set_form_title(form_title)
             self.update_page_status(len(questions), "Scan Complete")
 
-            # Generate template text
-            template_lines = []
-            for q in questions:
-                req_str = " (Required)" if q["required"] else ""
-                options_str = f" [Options: {', '.join(q['options'])}]" if q["options"] else ""
-                template_lines.append(f"{q['label']}:{req_str}{options_str}")
+            # Automatically generate synthetic data instead of a blank template
+            try:
+                count = int(self.synth_count_combo.get().strip())
+            except ValueError:
+                count = 5
             
-            template_text = "\n".join(template_lines)
-            self.populate_template_in_textbox(template_text)
+            self.logger.info(f"Auto-generating {count} synthetic Cebu-localized test records based on scanned structure...")
+            synthetic_data = synthetic_generator.generate_batch_synthetic_data(questions, count)
+            self.run_on_main_thread(self._populate_synthetic_data, synthetic_data)
 
             # Build structural JSON report to display in tab
             structure_report = []
@@ -426,9 +450,14 @@ class GoogleFormAutomationApp(ctk.CTk):
                 
             self.update_status_panels("{}", "\n".join(structure_report))
 
-            # Enable the Fill button
+            # Enable Fill and Generate buttons
             self.run_on_main_thread(self.fill_btn.configure, state="normal")
-            self.run_on_main_thread(messagebox.showinfo, "Scan Complete", "Form scanned successfully! Please fill out the raw data template in the textbox and click '2. Start Filling'.")
+            self.run_on_main_thread(self.generate_synth_btn.configure, state="normal")
+            self.run_on_main_thread(
+                messagebox.showinfo, 
+                "Scan Complete", 
+                f"Form scanned successfully! {count} Cebu-localized synthetic records have been generated in the textbox. Click '2. Start Filling' to begin automation."
+            )
 
         except Exception as e:
             self.logger.error(f"Scan failed: {e}")
@@ -436,6 +465,26 @@ class GoogleFormAutomationApp(ctk.CTk):
         finally:
             self.is_running_automation = False
             self.run_on_main_thread(self.scan_btn.configure, state="normal")
+
+    def _populate_synthetic_data(self, text):
+        self.raw_textbox.delete("1.0", "end")
+        self.raw_textbox.insert("1.0", text)
+
+    def on_generate_synth_click(self):
+        if not self.detected_questions:
+            messagebox.showwarning("Warning", "Please scan a form first before generating test data.")
+            return
+            
+        try:
+            count = int(self.synth_count_combo.get().strip())
+        except ValueError:
+            count = 5
+            
+        self.logger.info(f"Generating {count} synthetic test records...")
+        synthetic_data = synthetic_generator.generate_batch_synthetic_data(self.detected_questions, count)
+        
+        self._populate_synthetic_data(synthetic_data)
+        self.logger.info(f"Generated {count} Cebu-localized synthetic records in the textbox.")
 
     # --- PHASE 2: START FILLING ---
     def on_fill_click(self):

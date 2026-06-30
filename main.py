@@ -1,6 +1,6 @@
 import os
 import json
-from gui import GoogleFormAutomationApp
+from gui import XanrieApp
 from template_manager import TemplateManager
 
 def ensure_directories():
@@ -45,7 +45,7 @@ def main():
     tm.create_sample_template()
     
     # Start the GUI
-    app = GoogleFormAutomationApp()
+    app = XanrieApp()
     app.mainloop()
 
 if __name__ == "__main__":

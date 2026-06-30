@@ -73,7 +73,7 @@ class BrowserController:
     # ==========================================
     def scan_entire_form(self, url, config_dummy_data=None):
         """Phase 1: Performs a full multi-page scan of the form, building and
-        executing dummy answer plans for required fields to navigate through all pages.
+        executing dummy answer plans for all fields to navigate through all pages.
         Reloads the form at the end to leave it completely clean.
         """
         self.navigate_to_form(url)
@@ -82,6 +82,7 @@ class BrowserController:
         all_scanned_questions = []
         form_title = "Google Form"
         page_num = 1
+        max_page_retries = 3
         
         if self.logger:
             self.logger.info("Starting Phase 1: Full Form Scan")
@@ -96,7 +97,6 @@ class BrowserController:
                 form_title = scan_results["form_title"]
                 
             page_questions = scan_results["questions"]
-            all_scanned_questions.extend(page_questions)
             
             # Log scanned questions
             for q in page_questions:
@@ -104,39 +104,70 @@ class BrowserController:
                 if self.logger:
                     self.logger.info(f"Found question: {q['label']} | Type: {q['type']} | Required: {q['required']}{options_log}")
 
+            current_labels = [q["label"] for q in page_questions]
             next_btn = scan_results["next_btn"]
             
-            # 2. If a Next button exists, we must fill required fields to proceed
+            # 2. If a Next button exists, we must fill fields to proceed
             if next_btn:
-                # Build answer plan for Page
-                if self.logger:
-                    self.logger.info(f"Building answer plan for Page {page_num}...")
-                answer_plan = self.build_answer_plan(page_questions, config_dummy_data)
+                retry_count = 0
+                page_changed = False
                 
-                # Fill required fields
-                if self.logger:
-                    self.logger.info(f"Filling required fields for Page {page_num}...")
-                self.fill_required_fields_from_plan(answer_plan)
-                
-                # Validate the page
-                if self.logger:
-                    self.logger.info(f"Validating Page {page_num}...")
-                validation_errors = self.validate_current_page()
-                
-                if validation_errors:
+                while retry_count < max_page_retries:
+                    # Build answer plan for Page
                     if self.logger:
-                        self.logger.warning(f"Validation failed on Page {page_num}: {validation_errors}. Attempting to resolve...")
-                
-                # Click Next
-                if self.logger:
-                    self.logger.info("Clicking Next...")
-                success = self.click_next_if_available()
-                if not success:
+                        self.logger.info(f"Building answer plan for Page {page_num} (Attempt {retry_count + 1})...")
+                    answer_plan = self.build_answer_plan(page_questions, config_dummy_data)
+                    
+                    # Fill fields
                     if self.logger:
-                        self.logger.error(f"Failed to navigate past Page {page_num}. Stopping scan.")
-                    break
+                        self.logger.info(f"Filling fields for Page {page_num}...")
+                    self.fill_required_fields_from_plan(answer_plan)
+                    
+                    # Validate the page
+                    validation_errors = self.validate_current_page()
+                    if validation_errors:
+                        if self.logger:
+                            self.logger.warning(f"Validation errors before Next: {validation_errors}")
+                    
+                    # Click Next
+                    if self.logger:
+                        self.logger.info("Clicking Next...")
+                    self.click_next_if_available()
+                    
+                    # Wait and check if the page actually changed
+                    self.page.wait_for_timeout(1500)
+                    new_scan = self.scan_current_page(page_num)
+                    new_labels = [q["label"] for q in new_scan["questions"]]
+                    
+                    if new_labels != current_labels:
+                        # Page changed successfully!
+                        page_changed = True
+                        all_scanned_questions.extend(page_questions)
+                        break
+                    else:
+                        retry_count += 1
+                        if self.logger:
+                            self.logger.warning(f"Page did not change after clicking Next.")
+                        
+                        # Identify failed validation errors on the page
+                        validation_errors = self.validate_current_page()
+                        if validation_errors:
+                            if self.logger:
+                                self.logger.warning(f"Validation error found: {validation_errors}")
+                                
+                        # Re-scan to catch any newly appeared inputs or status
+                        page_questions = new_scan["questions"]
+                
+                if not page_changed:
+                    error_msg = f"Failed to navigate past Page {page_num} after {max_page_retries} attempts. Required fields might be invalid or missing."
+                    if self.logger:
+                        self.logger.error(error_msg)
+                    raise Exception(error_msg)
+                    
                 page_num += 1
             else:
+                # No next button, we are on the final page (Submit)
+                all_scanned_questions.extend(page_questions)
                 if self.logger:
                     self.logger.info("Reached final page (Submit button detected). Scan complete.")
                 break
@@ -288,6 +319,79 @@ class BrowserController:
                     "fill_status": "pending"
                 })
 
+        # Scan for email inputs outside standard listitems (e.g. automatic email collection)
+        try:
+            email_inputs = self.page.query_selector_all('input[type="email"]')
+            for email_in in email_inputs:
+                already_scanned = False
+                for q in questions:
+                    if "email" in q["label"].lower() or "e-mail" in q["label"].lower() or "gmail" in q["label"].lower():
+                        already_scanned = True
+                        break
+                
+                if not already_scanned:
+                    label_text = "Email Address"
+                    aria_label = email_in.get_attribute("aria-label")
+                    if aria_label:
+                        label_text = re.sub(r'\s+', ' ', aria_label).strip()
+                    
+                    is_req = email_in.get_attribute("required") is not None or email_in.get_attribute("aria-required") == "true" or True
+                    questions.insert(0, {
+                        "page_number": page_num,
+                        "label": label_text,
+                        "type": "email",
+                        "required": is_req,
+                        "options": [],
+                        "locator_strategy": "input[type='email']",
+                        "dummy_answer": "test.cebu.user@example.com",
+                        "filled_during_scan": False,
+                        "fill_status": "pending"
+                    })
+        except Exception:
+            pass
+
+        # Scan for text inputs that act as email inputs
+        try:
+            text_inputs = self.page.query_selector_all('input[type="text"]')
+            for txt_in in text_inputs:
+                aria_label = txt_in.get_attribute("aria-label") or ""
+                autocomplete = txt_in.get_attribute("autocomplete") or ""
+                placeholder = txt_in.get_attribute("placeholder") or ""
+                
+                is_email = False
+                if any(kw in aria_label.lower() for kw in ["email", "e-mail", "gmail"]):
+                    is_email = True
+                elif any(kw in autocomplete.lower() for kw in ["email"]):
+                    is_email = True
+                elif any(kw in placeholder.lower() for kw in ["email"]):
+                    is_email = True
+                    
+                if is_email:
+                    label_name = aria_label if aria_label else "Email Address"
+                    label_name = re.sub(r'\s+', ' ', label_name).strip()
+                    
+                    already_scanned = False
+                    for q in questions:
+                        if q["label"].lower() == label_name.lower() or "email" in q["label"].lower():
+                            already_scanned = True
+                            break
+                            
+                    if not already_scanned:
+                        is_req = txt_in.get_attribute("required") is not None or txt_in.get_attribute("aria-required") == "true" or True
+                        questions.insert(0, {
+                            "page_number": page_num,
+                            "label": label_name,
+                            "type": "email",
+                            "required": is_req,
+                            "options": [],
+                            "locator_strategy": "input[type='text']",
+                            "dummy_answer": "test.cebu.user@example.com",
+                            "filled_during_scan": False,
+                            "fill_status": "pending"
+                        })
+        except Exception:
+            pass
+
         next_btn = self._find_button(["Next", "Continue", "Siguiente", "Susunod"])
         back_btn = self._find_button(["Back", "Atrás", "Bumalik"])
         submit_btn = self._find_button(["Submit", "Submit form", "Enviar", "Isumite"])
@@ -375,12 +479,13 @@ class BrowserController:
                 return options[0]
             return "1"
 
-        # Priority 3: Text fields
+        # Priority 3: Text fields / Email fields
+        if q_type == "email" or any(kw in q_label_lower for kw in ["email", "e-mail", "gmail"]):
+            return config_dummy_data.get("email", "test.cebu.user@example.com")
+
         if q_type in ["short_answer", "paragraph"]:
             if "name" in q_label_lower:
                 return config_dummy_data.get("name", "Test User")
-            if "email" in q_label_lower:
-                return config_dummy_data.get("email", "test@example.com")
             if "student id" in q_label_lower or "id number" in q_label_lower or "student no" in q_label_lower:
                 return config_dummy_data.get("student id", "202400001")
             if "phone" in q_label_lower or "mobile" in q_label_lower or "contact" in q_label_lower:
@@ -528,6 +633,69 @@ class BrowserController:
                     "required": is_required,
                     "options": options
                 })
+
+        # Scan for email inputs outside standard listitems in Phase 2
+        try:
+            email_inputs = self.page.query_selector_all('input[type="email"]')
+            for email_in in email_inputs:
+                already_scanned = False
+                for q in questions:
+                    if "email" in q["title"].lower() or "e-mail" in q["title"].lower() or "gmail" in q["title"].lower():
+                        already_scanned = True
+                        break
+                
+                if not already_scanned:
+                    label_text = "Email Address"
+                    aria_label = email_in.get_attribute("aria-label")
+                    if aria_label:
+                        label_text = re.sub(r'\s+', ' ', aria_label).strip()
+                    
+                    is_req = email_in.get_attribute("required") is not None or email_in.get_attribute("aria-required") == "true" or True
+                    questions.insert(0, {
+                        "title": label_text,
+                        "type": "email",
+                        "required": is_req,
+                        "options": []
+                    })
+        except Exception:
+            pass
+
+        # Scan for text inputs that act as email inputs in Phase 2
+        try:
+            text_inputs = self.page.query_selector_all('input[type="text"]')
+            for txt_in in text_inputs:
+                aria_label = txt_in.get_attribute("aria-label") or ""
+                autocomplete = txt_in.get_attribute("autocomplete") or ""
+                placeholder = txt_in.get_attribute("placeholder") or ""
+                
+                is_email = False
+                if any(kw in aria_label.lower() for kw in ["email", "e-mail", "gmail"]):
+                    is_email = True
+                elif any(kw in autocomplete.lower() for kw in ["email"]):
+                    is_email = True
+                elif any(kw in placeholder.lower() for kw in ["email"]):
+                    is_email = True
+                    
+                if is_email:
+                    label_name = aria_label if aria_label else "Email Address"
+                    label_name = re.sub(r'\s+', ' ', label_name).strip()
+                    
+                    already_scanned = False
+                    for q in questions:
+                        if q["title"].lower() == label_name.lower() or "email" in q["title"].lower():
+                            already_scanned = True
+                            break
+                            
+                    if not already_scanned:
+                        is_req = txt_in.get_attribute("required") is not None or txt_in.get_attribute("aria-required") == "true" or True
+                        questions.insert(0, {
+                            "title": label_name,
+                            "type": "email",
+                            "required": is_req,
+                            "options": []
+                        })
+        except Exception:
+            pass
                 
         return form_title, questions
 
@@ -566,6 +734,22 @@ class BrowserController:
                     self.logger.info(f"Located container using short prefix: '{short_prefix}'")
 
         if not container_loc:
+            # Fallback for email fields that are outside standard listitem containers
+            if any(kw in q_title_clean.lower() for kw in ["email", "e-mail", "gmail"]):
+                for selector in ['input[type="email"]', 'input[autocomplete="email"]', 'input[aria-label*="email" i]', 'input[aria-label*="e-mail" i]', 'input[placeholder*="email" i]']:
+                    try:
+                        loc = self.page.locator(selector).first
+                        if loc.count() > 0:
+                            loc.scroll_into_view_if_needed()
+                            loc.click()
+                            self.page.wait_for_timeout(50)
+                            loc.fill(str(value))
+                            if self.logger:
+                                self.logger.info(f"Filled email field via global selector: '{selector}' with '{value}'")
+                            return
+                    except Exception:
+                        continue
+            
             if self.logger:
                 self.logger.warning(f"Could not locate container for question: '{q_title_clean}'")
             return
