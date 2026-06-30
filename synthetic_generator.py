@@ -1,7 +1,9 @@
 import random
 import re
+import json
+import os
 
-# Cebu-localized synthetic names pools
+# Fictional names pools (Cebuano/Filipino context)
 FIRST_NAMES_MALE = [
     "Juan Miguel", "Jose Mari", "Mark Gil", "Junjun", "Dexter", "John Paul", "Carlo", "Ramon", 
     "Kenneth", "Christian", "Reynaldo", "Alvin", "Michael", "Francis", "Jomar", "Sherwin", 
@@ -20,49 +22,72 @@ LAST_NAMES = [
     "Chan", "Lim", "Go", "Ybañez", "Villamor", "Quisumbing", "Arong", "Ruiz", "Gonzales"
 ]
 
-CEBU_LOCATIONS = [
-    "Cebu City", "Lapu-Lapu City", "Mandaue City", "Talisay City", "Consolacion", 
-    "Minglanilla", "Cordova", "Carcar City", "Danao City", "Toledo City"
-]
-
 COURSES = [
     "BS Information Technology", "BS Computer Science", "BS Business Administration", 
     "BS Hospitality Management", "BS Civil Engineering", "BS Nursing", "AB Communication"
 ]
 
-SCHOOLS = [
-    "University of Cebu", "University of San Carlos", "Cebu Institute of Technology - University", 
-    "University of San Jose - Recoletos", "University of the Visayas", "Indiana Aerospace University", 
-    "Cebu Technological University"
-]
+# Load local cebu locations dataset
+def load_cebu_locations():
+    path = os.path.join(os.path.dirname(__file__), "data", "cebu_locations.json")
+    if os.path.exists(path):
+        try:
+            with open(path, "r", encoding="utf-8") as f:
+                return json.load(f)
+        except Exception:
+            pass
+    # Fallback dataset if file reading fails
+    return {
+        "Cebu City": {
+            "province": "Cebu",
+            "sample_barangays": ["Lahug", "Guadalupe", "Talamban", "Mabolo", "Banilad"],
+            "sample_schools": ["University of Cebu", "Cebu Normal University", "University of San Carlos"],
+            "sample_address_format": "{barangay}, Cebu City, Cebu"
+        },
+        "Lapu-Lapu City": {
+            "province": "Cebu",
+            "sample_barangays": ["Pajo", "Basak", "Marigondon", "Gun-ob", "Pusok"],
+            "sample_schools": ["University of Cebu Lapu-Lapu and Mandaue", "Lapu-Lapu City College"],
+            "sample_address_format": "{barangay}, Lapu-Lapu City, Cebu"
+        }
+    }
 
-SECTIONS = [
-    "A", "B", "C", "D", "1A", "2B", "3A", "4A", "IT-3A", "CS-2B", "BA-1C"
-]
+CEBU_DATASET = load_cebu_locations()
 
-def generate_synthetic_record(scanned_questions):
+def generate_synthetic_record(scanned_questions, selected_city="Random", selected_barangay="Random", use_cebu_localized=True, vary_likert=True):
     """Generates a single synthetic record mapping scanned questions to varied, 
-    consistent, Cebu-localized, fictional answers.
+    consistent, Cebu-localized, fictional answers based on the scanned structure.
     """
     record = {}
     
-    # 1. Establish demographic base for profile consistency
+    # 1. Profile parameters
     gender = random.choice(["Male", "Female"])
     first_name = random.choice(FIRST_NAMES_MALE) if gender == "Male" else random.choice(FIRST_NAMES_FEMALE)
     last_name = random.choice(LAST_NAMES)
     middle_initial = random.choice(["A.", "B.", "C.", "D.", "E.", "M.", "P.", "S.", "T.", "V."])
     
-    # Fictional Name formatting
     full_name = f"{last_name}, {first_name} {middle_initial}"
     email_user = f"{first_name.lower().replace(' ', '.')}.{last_name.lower().replace(' ', '')}.test"
     email = f"{email_user}@example.com"
     
-    # Select location, school, course
-    location = random.choice(CEBU_LOCATIONS)
-    school = random.choice(SCHOOLS)
+    # Set localized variables
+    city = selected_city
+    if city == "Random":
+        city = random.choice(list(CEBU_DATASET.keys()))
+        
+    city_data = CEBU_DATASET.get(city, CEBU_DATASET["Cebu City"])
+    
+    barangay = selected_barangay
+    if barangay == "Random":
+        barangay = random.choice(city_data["sample_barangays"])
+    elif not barangay:
+        barangay = city_data["sample_barangays"][0]
+        
+    address = city_data["sample_address_format"].format(barangay=barangay)
+    school = random.choice(city_data["sample_schools"])
     course = random.choice(COURSES)
     
-    # Extract short course prefix for section name
+    # Section consistency
     course_prefix = "GEN"
     if "information technology" in course.lower():
         course_prefix = "IT"
@@ -85,11 +110,9 @@ def generate_synthetic_record(scanned_questions):
         q_type = q["type"]
         options = q.get("options", [])
         
-        # If the question is option-based, we MUST choose from the actual options
+        # Priority: Option-based fields (Must pick a valid option)
         if q_type in ["multiple_choice", "dropdown", "checkbox"] and options:
-            # Handle specific known option-based questions
             if "gender" in label_lower or "sex" in label_lower:
-                # Try to match profile gender
                 matched = None
                 for opt in options:
                     if gender.lower() in opt.lower():
@@ -98,11 +121,8 @@ def generate_synthetic_record(scanned_questions):
                 record[label] = matched if matched else options[0]
                 
             elif "age" in label_lower:
-                if len(options) > 1:
-                    record[label] = random.choice(options)
-                else:
-                    record[label] = options[0]
-                    
+                record[label] = random.choice(options)
+                
             elif "strand" in label_lower or "shs" in label_lower:
                 record[label] = random.choice(options)
                 
@@ -110,10 +130,50 @@ def generate_synthetic_record(scanned_questions):
                 record[label] = random.choice(options)
                 
             elif is_likert_scale(options):
-                record[label] = choose_likert_answer(options)
+                if vary_likert:
+                    record[label] = choose_likert_answer(options)
+                else:
+                    # Choose a positive option by default if variation is off
+                    positive_opt = None
+                    for opt in options:
+                        if "strongly agree" in opt.lower() or "agree" in opt.lower() or "satisfy" in opt.lower():
+                            positive_opt = opt
+                            break
+                    record[label] = positive_opt if positive_opt else options[0]
                 
             elif is_numeric_scale(options):
-                record[label] = random.choice(options)
+                if vary_likert:
+                    record[label] = random.choice(options)
+                else:
+                    # Default to middle-high
+                    mid_idx = min(len(options) - 1, len(options) * 3 // 4)
+                    record[label] = options[mid_idx]
+                
+            elif "city" in label_lower or "municipality" in label_lower:
+                # Option-aware city matching
+                matched = None
+                for opt in options:
+                    if city.lower() in opt.lower() or opt.lower() in city.lower():
+                        matched = opt
+                        break
+                record[label] = matched if matched else random.choice(options)
+                
+            elif "school" in label_lower or "university" in label_lower or "college" in label_lower:
+                # Option-aware school matching
+                matched = None
+                for opt in options:
+                    if school.lower() in opt.lower() or opt.lower() in school.lower():
+                        matched = opt
+                        break
+                record[label] = matched if matched else random.choice(options)
+                
+            elif "barangay" in label_lower:
+                matched = None
+                for opt in options:
+                    if barangay.lower() in opt.lower() or opt.lower() in barangay.lower():
+                        matched = opt
+                        break
+                record[label] = matched if matched else random.choice(options)
                 
             else:
                 if q_type == "checkbox":
@@ -124,15 +184,19 @@ def generate_synthetic_record(scanned_questions):
                     record[label] = random.choice(options)
                     
         else:
-            # Free text / date / time questions
+            # Free text / numeric / date / time questions
             if "email" in label_lower or "e-mail" in label_lower or "gmail" in label_lower:
                 record[label] = email
             elif "name" in label_lower or "full name" in label_lower:
                 record[label] = full_name
-            elif "address" in label_lower or "location" in label_lower or "city" in label_lower:
-                record[label] = f"{location}, Cebu"
+            elif "address" in label_lower:
+                record[label] = address if use_cebu_localized else "Fictional Address Format"
+            elif "barangay" in label_lower:
+                record[label] = barangay if use_cebu_localized else "Fictional Barangay"
+            elif "city" in label_lower or "municipality" in label_lower:
+                record[label] = city if use_cebu_localized else "Fictional City"
             elif "school" in label_lower or "university" in label_lower or "college" in label_lower:
-                record[label] = school
+                record[label] = school if use_cebu_localized else "Fictional School"
             elif "course" in label_lower or "program" in label_lower:
                 record[label] = course
             elif "section" in label_lower or "class" in label_lower:
@@ -193,11 +257,11 @@ def is_numeric_scale(options):
     """Helper to detect if options represent a numeric scale (e.g. 1 to 5)."""
     return all(re.match(r'^\d+$', opt.strip()) for opt in options if opt.strip())
 
-def generate_batch_synthetic_data(scanned_questions, count):
+def generate_batch_synthetic_data(scanned_questions, count, selected_city="Random", selected_barangay="Random", use_cebu_localized=True, vary_likert=True):
     """Generates multiple synthetic records split by '---'."""
     records = []
     for _ in range(count):
-        rec = generate_synthetic_record(scanned_questions)
+        rec = generate_synthetic_record(scanned_questions, selected_city, selected_barangay, use_cebu_localized, vary_likert)
         lines = []
         for k, v in rec.items():
             lines.append(f"{k}: {v}")

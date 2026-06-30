@@ -348,6 +348,14 @@ class XanrieApp(ctk.CTk):
         self.progress_bar.set(0)
         self.fill_btn.configure(state="disabled")
         self.submit_btn.configure(state="disabled")
+        self.generate_synth_btn.configure(state="disabled")
+        self.preview_synth_btn.configure(state="disabled")
+        self.use_synth_btn.configure(state="disabled")
+        
+        self.city_combo.set("Random")
+        self.brgy_combo.configure(values=["Random"])
+        self.brgy_combo.set("Random")
+        self.synth_count_combo.set("5")
         
         self.scanned_url = None
         self.detected_title = "None"
@@ -429,8 +437,15 @@ class XanrieApp(ctk.CTk):
             except ValueError:
                 count = 5
             
+            city = self.city_combo.get()
+            brgy = self.brgy_combo.get()
+            use_localized = self.use_localized_switch.get()
+            vary_likert = self.vary_likert_switch.get()
+
             self.logger.info(f"Auto-generating {count} synthetic Cebu-localized test records based on scanned structure...")
-            synthetic_data = synthetic_generator.generate_batch_synthetic_data(questions, count)
+            synthetic_data = synthetic_generator.generate_batch_synthetic_data(
+                questions, count, city, brgy, use_localized, vary_likert
+            )
             self.run_on_main_thread(self._populate_synthetic_data, synthetic_data)
 
             # Build structural JSON report to display in tab
@@ -450,9 +465,11 @@ class XanrieApp(ctk.CTk):
                 
             self.update_status_panels("{}", "\n".join(structure_report))
 
-            # Enable Fill and Generate buttons
+            # Enable Fill and all Synthetic buttons
             self.run_on_main_thread(self.fill_btn.configure, state="normal")
             self.run_on_main_thread(self.generate_synth_btn.configure, state="normal")
+            self.run_on_main_thread(self.preview_synth_btn.configure, state="normal")
+            self.run_on_main_thread(self.use_synth_btn.configure, state="normal")
             self.run_on_main_thread(
                 messagebox.showinfo, 
                 "Scan Complete", 
@@ -470,9 +487,20 @@ class XanrieApp(ctk.CTk):
         self.raw_textbox.delete("1.0", "end")
         self.raw_textbox.insert("1.0", text)
 
+    def update_barangay_list(self, choice):
+        if choice == "Random":
+            self.brgy_combo.configure(values=["Random"])
+            self.brgy_combo.set("Random")
+        else:
+            city_data = synthetic_generator.CEBU_DATASET.get(choice)
+            if city_data:
+                brgys = ["Random"] + city_data["sample_barangays"]
+                self.brgy_combo.configure(values=brgys)
+                self.brgy_combo.set("Random")
+
     def on_generate_synth_click(self):
         if not self.detected_questions:
-            messagebox.showwarning("Warning", "Please scan a form first before generating test data.")
+            messagebox.showwarning("Warning", "Please scan a form first.")
             return
             
         try:
@@ -480,11 +508,53 @@ class XanrieApp(ctk.CTk):
         except ValueError:
             count = 5
             
-        self.logger.info(f"Generating {count} synthetic test records...")
-        synthetic_data = synthetic_generator.generate_batch_synthetic_data(self.detected_questions, count)
+        city = self.city_combo.get()
+        brgy = self.brgy_combo.get()
+        use_localized = self.use_localized_switch.get()
+        vary_likert = self.vary_likert_switch.get()
+        
+        self.logger.info(f"Generating {count} Cebu-localized synthetic test records...")
+        synthetic_data = synthetic_generator.generate_batch_synthetic_data(
+            self.detected_questions, count, city, brgy, use_localized, vary_likert
+        )
         
         self._populate_synthetic_data(synthetic_data)
-        self.logger.info(f"Generated {count} Cebu-localized synthetic records in the textbox.")
+        self.logger.info("Synthetic raw text populated successfully.")
+
+    def on_preview_synth_click(self):
+        if not self.detected_questions:
+            messagebox.showwarning("Warning", "Please scan a form first.")
+            return
+            
+        try:
+            count = int(self.synth_count_combo.get().strip())
+        except ValueError:
+            count = 5
+            
+        city = self.city_combo.get()
+        brgy = self.brgy_combo.get()
+        use_localized = self.use_localized_switch.get()
+        vary_likert = self.vary_likert_switch.get()
+        
+        self.logger.info("Generating data preview...")
+        synthetic_data = synthetic_generator.generate_batch_synthetic_data(
+            self.detected_questions, count, city, brgy, use_localized, vary_likert
+        )
+        
+        records_text = self.parser.split_records(synthetic_data)
+        preview_list = []
+        for i, rec_text in enumerate(records_text):
+            parsed = self.parser.parse_record(rec_text)
+            preview_list.append(f"--- Record {i+1} Preview ---\n{json.dumps(parsed, indent=2)}")
+            
+        preview_text = "\n\n".join(preview_list)
+        self.run_on_main_thread(self._update_parsed_preview, preview_text)
+        self.run_on_main_thread(self.tabview.set, "Parsed Preview")
+        self.logger.info("Preview loaded in 'Parsed Preview' tab.")
+
+    def on_use_synth_click(self):
+        self.on_generate_synth_click()
+        self.on_fill_click()
 
     # --- PHASE 2: START FILLING ---
     def on_fill_click(self):

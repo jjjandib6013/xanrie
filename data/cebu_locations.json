@@ -1,0 +1,133 @@
+{
+  "Cebu City": {
+    "province": "Cebu",
+    "sample_barangays": ["Lahug", "Guadalupe", "Talamban", "Mabolo", "Banilad", "Capitol Site", "Apas", "Pardo", "Labangon", "Tisa"],
+    "sample_schools": [
+      "University of Cebu",
+      "Cebu Normal University",
+      "University of San Carlos",
+      "University of San Jose - Recoletos",
+      "Cebu Institute of Technology - University",
+      "University of the Visayas"
+    ],
+    "sample_address_format": "{barangay}, Cebu City, Cebu"
+  },
+  "Lapu-Lapu City": {
+    "province": "Cebu",
+    "sample_barangays": ["Pajo", "Basak", "Marigondon", "Gun-ob", "Pusok", "Mactan", "Babag", "Looc", "Calawisan"],
+    "sample_schools": [
+      "University of Cebu Lapu-Lapu and Mandaue",
+      "Lapu-Lapu City College",
+      "Indiana Aerospace University"
+    ],
+    "sample_address_format": "{barangay}, Lapu-Lapu City, Cebu"
+  },
+  "Mandaue City": {
+    "province": "Cebu",
+    "sample_barangays": ["Subangdaku", "Centro", "Bakilid", "Banilad", "Tipolo", "Guizo", "Looc", "Cabancalan", "Casuntingan"],
+    "sample_schools": [
+      "University of Cebu Lapu-Lapu and Mandaue",
+      "Mandaue City College",
+      "Cebu Doctors' University"
+    ],
+    "sample_address_format": "{barangay}, Mandaue City, Cebu"
+  },
+  "Talisay City": {
+    "province": "Cebu",
+    "sample_barangays": ["Poblacion", "Bulacao", "Tabunok", "Lawaan I", "Lawaan III", "Dumlog", "Cansojong", "San Isidro"],
+    "sample_schools": [
+      "Talisay City College",
+      "University of the Visayas - Talisay"
+    ],
+    "sample_address_format": "{barangay}, Talisay City, Cebu"
+  },
+  "Consolacion": {
+    "province": "Cebu",
+    "sample_barangays": ["Poblacion Oriental", "Poblacion Occidental", "Casili", "Lamac", "Pitogo", "Tayud", "Tugbongan", "Nangka"],
+    "sample_schools": [
+      "Consolacion Community College"
+    ],
+    "sample_address_format": "{barangay}, Consolacion, Cebu"
+  },
+  "Minglanilla": {
+    "province": "Cebu",
+    "sample_barangays": ["Poblacion Ward I", "Poblacion Ward II", "Tungkop", "Calajo-an", "Linao", "Pakigne", "Cuanos"],
+    "sample_schools": [
+      "University of the Visayas - Minglanilla"
+    ],
+    "sample_address_format": "{barangay}, Minglanilla, Cebu"
+  },
+  "Cordova": {
+    "province": "Cebu",
+    "sample_barangays": ["Poblacion", "Catarman", "Ibabao", "Pilipog", "San Miguel", "Dapitan", "Gabi"],
+    "sample_schools": [
+      "Cordova Public College"
+    ],
+    "sample_address_format": "{barangay}, Cordova, Cebu"
+  },
+  "Carcar City": {
+    "province": "Cebu",
+    "sample_barangays": ["Poblacion I", "Poblacion II", "Poblacion III", "Ocaña", "Liburon", "Tuyom", "Bolocboloc"],
+    "sample_schools": [
+      "Carcar City College"
+    ],
+    "sample_address_format": "{barangay}, Carcar City, Cebu"
+  },
+  "Danao City": {
+    "province": "Cebu",
+    "sample_barangays": ["Poblacion", "Suba", "Looc", "Guinsay", "Taytay", "Tuburan Sur", "Maslog"],
+    "sample_schools": [
+      "Cebu Technological University - Danao Campus"
+    ],
+    "sample_address_format": "{barangay}, Danao City, Cebu"
+  },
+  "Toledo City": {
+    "province": "Cebu",
+    "sample_barangays": ["Poblacion", "Lurang", "Bato", "Ilihan", "Cantabaco", "Don Andres Soriano", "Matab-ang"],
+    "sample_schools": [
+      "Toledo Gullas College"
+    ],
+    "sample_address_format": "{barangay}, Toledo City, Cebu"
+  },
+  "Naga City": {
+    "province": "Cebu",
+    "sample_barangays": ["Poblacion", "East Poblacion", "West Poblacion", "Inoburan", "Colon", "Tuyan", "Langtad"],
+    "sample_schools": [
+      "Professional Academy of the Philippines"
+    ],
+    "sample_address_format": "{barangay}, Naga City, Cebu"
+  },
+  "Liloan": {
+    "province": "Cebu",
+    "sample_barangays": ["Poblacion", "Yati", "Jubay", "Catarman", "San Vicente", "Calero", "Tayud"],
+    "sample_schools": [
+      "Liloan Community College"
+    ],
+    "sample_address_format": "{barangay}, Liloan, Cebu"
+  },
+  "Compostela": {
+    "province": "Cebu",
+    "sample_barangays": ["Poblacion", "Cogon", "Estaca", "Cabadiangan", "Canamucan", "Lupa"],
+    "sample_schools": [
+      "Compostela Science and Technology College"
+    ],
+    "sample_address_format": "{barangay}, Compostela, Cebu"
+  },
+  "Balamban": {
+    "province": "Cebu",
+    "sample_barangays": ["Poblacion", "Buanoy", "Aliwanay", "Arpili", "Cantibas", "Gaas"],
+    "sample_schools": [
+      "University of San Jose - Recoletos Balamban Campus"
+    ],
+    "sample_address_format": "{barangay}, Balamban, Cebu"
+  },
+  "Bogo City": {
+    "province": "Cebu",
+    "sample_barangays": ["Poblacion", "Carbon", "Gairan", "Polambato", "Malingin", "Dakit"],
+    "sample_schools": [
+      "Cebu Technological University - Bogo Campus",
+      "Northern Cebu College"
+    ],
+    "sample_address_format": "{barangay}, Bogo City, Cebu"
+  }
+}
