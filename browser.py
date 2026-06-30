@@ -306,6 +306,19 @@ class BrowserController:
                     else:
                         field_type = "short_answer"
 
+            # Get entry_id
+            entry_id = None
+            try:
+                entry_input = container.query_selector('input[name^="entry."]')
+                if entry_input:
+                    entry_id = entry_input.get_attribute("name")
+                else:
+                    textarea_el = container.query_selector('textarea[name^="entry."]')
+                    if textarea_el:
+                        entry_id = textarea_el.get_attribute("name")
+            except Exception:
+                pass
+
             if field_type:
                 questions.append({
                     "page_number": page_num,
@@ -313,6 +326,7 @@ class BrowserController:
                     "type": field_type,
                     "required": is_required,
                     "options": options,
+                    "entry_id": entry_id,
                     "locator_strategy": f"question_container > {field_type}",
                     "dummy_answer": "",
                     "filled_during_scan": False,
@@ -342,6 +356,7 @@ class BrowserController:
                         "type": "email",
                         "required": is_req,
                         "options": [],
+                        "entry_id": "emailAddress",
                         "locator_strategy": "input[type='email']",
                         "dummy_answer": "test.cebu.user@example.com",
                         "filled_during_scan": False,
@@ -384,6 +399,7 @@ class BrowserController:
                             "type": "email",
                             "required": is_req,
                             "options": [],
+                            "entry_id": "emailAddress",
                             "locator_strategy": "input[type='text']",
                             "dummy_answer": "test.cebu.user@example.com",
                             "filled_during_scan": False,
@@ -982,3 +998,106 @@ class BrowserController:
     def reload_form(self, url):
         """Reloads the form."""
         self.navigate_to_form(url)
+
+    def get_form_response_url(self, url):
+        """Replaces '/viewform' or other query params with '/formResponse'."""
+        response_url = re.sub(r'/viewform.*$', '/formResponse', url)
+        if "/formResponse" not in response_url:
+            response_url = response_url.rstrip('/') + '/formResponse'
+        return response_url
+
+    def submit_form_via_post(self, url, parsed_record, mapper, questions, use_dummy_data=True, config_dummy_data=None):
+        """Option 4: Performs direct URL-encoded HTTP POST submissions to bypass Playwright completely."""
+        import urllib.request
+        import urllib.parse
+
+        config_dummy_data = config_dummy_data or {}
+        
+        # 1. Map fields
+        mapped, unmapped, missing_req = mapper.map_fields(parsed_record, questions, None)
+        
+        # 2. Build URL POST payload
+        payload = []
+        for q in questions:
+            q_label = q["label"]
+            entry_id = q.get("entry_id")
+            if not entry_id:
+                continue
+                
+            val = None
+            if q_label in mapped and str(mapped[q_label]).strip() != "":
+                val = mapped[q_label]
+            elif q["required"] and use_dummy_data:
+                val = self.generate_dummy_value(q, config_dummy_data)
+                if self.logger:
+                    self.logger.warning(f"Required field '{q_label}' missing. Using dummy value: '{val}'")
+            
+            if val is not None:
+                q_type = q["type"]
+                options = q.get("options", [])
+                
+                if q_type in ["multiple_choice", "dropdown", "checkbox"] and options:
+                    if q_type == "checkbox":
+                        if isinstance(val, list):
+                            vals = val
+                        else:
+                            vals = [v.strip() for v in str(val).split(",") if v.strip()]
+                        
+                        for v in vals:
+                            matched_opt = self._match_option_value(v, options)
+                            if matched_opt:
+                                payload.append((entry_id, matched_opt))
+                    else:
+                        matched_opt = self._match_option_value(val, options)
+                        if matched_opt:
+                            payload.append((entry_id, matched_opt))
+                elif q_type == "date":
+                    match = re.match(r'^(\d{4})-(\d{2})-(\d{2})$', str(val).strip())
+                    if match:
+                        year, month, day = match.groups()
+                        payload.append((f"{entry_id}_year", year))
+                        payload.append((f"{entry_id}_month", month))
+                        payload.append((f"{entry_id}_day", day))
+                    else:
+                        payload.append((entry_id, str(val)))
+                elif q_type == "time":
+                    match = re.match(r'^(\d{2}):(\d{2})$', str(val).strip())
+                    if match:
+                        hour, minute = match.groups()
+                        payload.append((f"{entry_id}_hour", hour))
+                        payload.append((f"{entry_id}_minute", minute))
+                    else:
+                        payload.append((entry_id, str(val)))
+                else:
+                    payload.append((entry_id, str(val)))
+
+        # 3. Send HTTP POST
+        response_url = self.get_form_response_url(url)
+        if self.logger:
+            self.logger.info(f"Posting directly to {response_url}")
+            
+        data = urllib.parse.urlencode(payload).encode('utf-8')
+        headers = {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
+        }
+        
+        req = urllib.request.Request(response_url, data=data, headers=headers, method='POST')
+        try:
+            with urllib.request.urlopen(req, timeout=15) as response:
+                html = response.read().decode('utf-8', errors='ignore')
+                success_indicators = [
+                    "Your response has been recorded", 
+                    "Naitala na ang iyong tugon", 
+                    "recorded",
+                    "submitted",
+                    "tugon"
+                ]
+                if any(ind in html or ind.lower() in html.lower() for ind in success_indicators):
+                    return True
+                else:
+                    return response.status == 200
+        except Exception as e:
+            if self.logger:
+                self.logger.error(f"HTTP Direct POST failed: {e}")
+            raise e

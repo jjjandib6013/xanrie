@@ -121,7 +121,7 @@ class XanrieApp(ctk.CTk):
         # Toggles Frame
         toggles_frame = ctk.CTkFrame(left_panel, fg_color="transparent")
         toggles_frame.grid(row=3, column=0, sticky="ew", padx=15, pady=10)
-        toggles_frame.grid_columnconfigure((0, 1), weight=1)
+        toggles_frame.grid_columnconfigure((0, 1, 2), weight=1)
         
         self.auto_submit_switch = ctk.CTkSwitch(
             toggles_frame, 
@@ -141,6 +141,16 @@ class XanrieApp(ctk.CTk):
         )
         self.dummy_data_switch.grid(row=0, column=1, padx=5, pady=5, sticky="w")
         self.dummy_data_switch.select()
+
+        self.use_browser_switch = ctk.CTkSwitch(
+            toggles_frame,
+            text="Use Browser-based Filling",
+            onvalue=True,
+            offvalue=False
+        )
+        self.use_browser_switch.grid(row=0, column=2, padx=5, pady=5, sticky="w")
+        # Keep it OFF by default so it runs silently via HTTP POST
+        self.use_browser_switch.deselect()
 
         # Synthetic Cebu Data Settings Frame
         synthetic_frame = ctk.CTkFrame(left_panel)
@@ -640,13 +650,16 @@ class XanrieApp(ctk.CTk):
 
     def _run_fill_worker(self, url, raw_text):
         try:
-            # Safely close any existing browser controller to avoid thread conflicts
-            if self.browser_controller:
+            use_browser = self.use_browser_switch.get()
+            
+            # If using browser, safely close any existing session first
+            if use_browser and self.browser_controller:
                 try:
                     self.browser_controller.close_browser()
                 except Exception:
                     pass
             
+            # Initialize BrowserController (doesn't launch Chromium yet)
             self.browser_controller = BrowserController(
                 default_timeout=self.config.get("default_timeout", 15000),
                 logger=self.logger
@@ -673,48 +686,70 @@ class XanrieApp(ctk.CTk):
                 parsed_json = json.dumps(parsed_record, indent=2)
                 self.run_on_main_thread(self._update_parsed_preview, f"Record {record_num}/{total_records}:\n{parsed_json}")
 
-                # Ensure browser is on the form page
-                self.logger.info(f"Loading/reloading form for Record {record_num}...")
-                self.browser_controller.navigate_to_form(url)
+                if use_browser:
+                    # headed browser path
+                    self.logger.info(f"Loading/reloading form for Record {record_num}...")
+                    self.browser_controller.launch_browser()
+                    self.browser_controller.navigate_to_form(url)
 
-                self.logger.info(f"Filling Form for Record {record_num}...")
-                self.browser_controller.fill_form_with_real_data(
-                    mapper=self.mapper,
-                    parsed_record=parsed_record,
-                    template=self.current_template,
-                    use_dummy_data=self.dummy_data_switch.get(),
-                    config_dummy_data=self.config.get("dummy_data", {}),
-                    progress_callback=self.update_progress
-                )
+                    self.logger.info(f"Filling Form for Record {record_num}...")
+                    self.browser_controller.fill_form_with_real_data(
+                        mapper=self.mapper,
+                        parsed_record=parsed_record,
+                        template=self.current_template,
+                        use_dummy_data=self.dummy_data_switch.get(),
+                        config_dummy_data=self.config.get("dummy_data", {}),
+                        progress_callback=self.update_progress
+                    )
 
-                if auto_submit:
-                    self.logger.info(f"Submitting Record {record_num}...")
-                    self.browser_controller.submit_form()
-                    if self.browser_controller.is_submitted():
-                        self.logger.info(f"Record {record_num} submitted successfully!")
+                    if auto_submit:
+                        self.logger.info(f"Submitting Record {record_num}...")
+                        self.browser_controller.submit_form()
+                        if self.browser_controller.is_submitted():
+                            self.logger.info(f"Record {record_num} submitted successfully!")
+                        else:
+                            self.logger.warning(f"Record {record_num} submitted, confirmation page not verified.")
+                        self.page_status_label.configure(text=f"Record {record_num}/{total_records} Submitted")
                     else:
-                        self.logger.warning(f"Record {record_num} submitted, confirmation page not verified.")
-                    self.page_status_label.configure(text=f"Record {record_num}/{total_records} Submitted")
+                        # If auto_submit is off, we pause and wait for the user to review/submit this record.
+                        self.logger.info(f"Record {record_num} filled. Waiting for you to review and submit in the browser.")
+                        self.run_on_main_thread(self.submit_btn.configure, state="normal")
+                        
+                        # If it's not the last record, prompt user to continue when ready
+                        if record_num < total_records:
+                            self.run_on_main_thread(
+                                messagebox.showinfo, 
+                                "Review & Submit", 
+                                f"Record {record_num} is filled. Please verify/submit it in the browser, then click OK here to load and fill Record {record_num+1}."
+                            )
+                        else:
+                            self.run_on_main_thread(
+                                messagebox.showinfo, 
+                                "Filling Complete", 
+                                "Final record filled! Please submit manually in the browser."
+                            )
                 else:
-                    # If auto_submit is off, we pause and wait for the user to review/submit this record.
-                    self.logger.info(f"Record {record_num} filled. Waiting for you to review and submit in the browser.")
-                    self.run_on_main_thread(self.submit_btn.configure, state="normal")
+                    # Silent HTTP POST path (Option 4)
+                    self.logger.info(f"Submitting Record {record_num} directly via instant POST...")
+                    success = self.browser_controller.submit_form_via_post(
+                        url=url,
+                        parsed_record=parsed_record,
+                        mapper=self.mapper,
+                        questions=self.detected_questions,
+                        use_dummy_data=self.dummy_data_switch.get(),
+                        config_dummy_data=self.config.get("dummy_data", {})
+                    )
                     
-                    # If it's not the last record, prompt user to continue when ready
-                    if record_num < total_records:
-                        self.run_on_main_thread(
-                            messagebox.showinfo, 
-                            "Review & Submit", 
-                            f"Record {record_num} is filled. Please verify/submit it in the browser, then click OK here to load and fill Record {record_num+1}."
-                        )
+                    if success:
+                        self.logger.info(f"Record {record_num} submitted instantly!")
                     else:
-                        self.run_on_main_thread(
-                            messagebox.showinfo, 
-                            "Filling Complete", 
-                            "Final record filled! Please submit manually in the browser."
-                        )
+                        self.logger.warning(f"Record {record_num} submission posted, but success not verified.")
+                        
+                    self.run_on_main_thread(self.page_status_label.configure, text=f"Record {record_num}/{total_records} Submitted")
+                    self.update_progress(record_num, total_records)
 
-            if auto_submit:
+            # Execution end popup
+            if auto_submit or not use_browser:
                 self.logger.info("All records processed successfully!")
                 self.run_on_main_thread(messagebox.showinfo, "Automation Complete", f"Successfully completed all {total_records} submissions!")
 
