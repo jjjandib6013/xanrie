@@ -142,28 +142,81 @@ class XanrieApp(ctk.CTk):
         self.dummy_data_switch.grid(row=0, column=1, padx=5, pady=5, sticky="w")
         self.dummy_data_switch.select()
 
-        # Synthetic Data Generation Frame
-        synthetic_frame = ctk.CTkFrame(left_panel, fg_color="transparent")
+        # Synthetic Cebu Data Settings Frame
+        synthetic_frame = ctk.CTkFrame(left_panel)
         synthetic_frame.grid(row=4, column=0, sticky="ew", padx=15, pady=10)
-        synthetic_frame.grid_columnconfigure(0, weight=1)
-        synthetic_frame.grid_columnconfigure(1, weight=1)
+        synthetic_frame.grid_columnconfigure((0, 1), weight=1)
 
-        synth_label = ctk.CTkLabel(synthetic_frame, text="Synthetic Test Records:", font=ctk.CTkFont(weight="bold"))
-        synth_label.grid(row=0, column=0, sticky="w", padx=5)
+        synth_title = ctk.CTkLabel(synthetic_frame, text="Synthetic Cebu Data Settings", font=ctk.CTkFont(size=14, weight="bold"))
+        synth_title.grid(row=0, column=0, columnspan=2, pady=5, sticky="w", padx=10)
 
-        self.synth_count_combo = ctk.CTkComboBox(synthetic_frame, values=["1", "3", "5", "10", "20", "50"])
-        self.synth_count_combo.grid(row=0, column=1, padx=5, sticky="ew")
+        city_label = ctk.CTkLabel(synthetic_frame, text="Cebu City/Municipality:")
+        city_label.grid(row=1, column=0, sticky="w", padx=10, pady=2)
+        cities = [
+            "Random", "Cebu City", "Lapu-Lapu City", "Mandaue City", "Talisay City", 
+            "Consolacion", "Minglanilla", "Cordova", "Carcar City", "Danao City", 
+            "Toledo City", "Naga City", "Liloan", "Compostela", "Balamban", "Bogo City"
+        ]
+        self.city_combo = ctk.CTkComboBox(synthetic_frame, values=cities, command=self.update_barangay_list)
+        self.city_combo.grid(row=1, column=1, padx=10, pady=2, sticky="ew")
+        self.city_combo.set("Random")
+
+        brgy_label = ctk.CTkLabel(synthetic_frame, text="Barangay:")
+        brgy_label.grid(row=2, column=0, sticky="w", padx=10, pady=2)
+        self.brgy_combo = ctk.CTkComboBox(synthetic_frame, values=["Random"])
+        self.brgy_combo.grid(row=2, column=1, padx=10, pady=2, sticky="ew")
+        self.brgy_combo.set("Random")
+
+        count_label = ctk.CTkLabel(synthetic_frame, text="Records to Generate:")
+        count_label.grid(row=3, column=0, sticky="w", padx=10, pady=2)
+        self.synth_count_combo = ctk.CTkComboBox(synthetic_frame, values=["1", "5", "10", "50", "100", "200", "500"])
+        self.synth_count_combo.grid(row=3, column=1, padx=10, pady=2, sticky="ew")
         self.synth_count_combo.set("5")
 
+        self.use_localized_switch = ctk.CTkSwitch(synthetic_frame, text="Use Cebu-localized Data", onvalue=True, offvalue=False)
+        self.use_localized_switch.grid(row=4, column=0, columnspan=2, padx=10, pady=2, sticky="w")
+        self.use_localized_switch.select()
+
+        self.vary_likert_switch = ctk.CTkSwitch(synthetic_frame, text="Vary Likert Scale Answers", onvalue=True, offvalue=False)
+        self.vary_likert_switch.grid(row=5, column=0, columnspan=2, padx=10, pady=2, sticky="w")
+        self.vary_likert_switch.select()
+
+        synth_buttons_frame = ctk.CTkFrame(synthetic_frame, fg_color="transparent")
+        synth_buttons_frame.grid(row=6, column=0, columnspan=2, pady=10, sticky="ew")
+        synth_buttons_frame.grid_columnconfigure((0, 1, 2), weight=1)
+
         self.generate_synth_btn = ctk.CTkButton(
-            synthetic_frame,
-            text="Generate Test Data",
+            synth_buttons_frame,
+            text="Gen Raw Text",
             command=self.on_generate_synth_click,
             fg_color="gray30",
             hover_color="gray45",
-            state="disabled"
+            state="disabled",
+            height=30
         )
-        self.generate_synth_btn.grid(row=1, column=0, columnspan=2, padx=5, pady=(10, 0), sticky="ew")
+        self.generate_synth_btn.grid(row=0, column=0, padx=2, sticky="ew")
+
+        self.preview_synth_btn = ctk.CTkButton(
+            synth_buttons_frame,
+            text="Preview",
+            command=self.on_preview_synth_click,
+            fg_color="gray30",
+            hover_color="gray45",
+            state="disabled",
+            height=30
+        )
+        self.preview_synth_btn.grid(row=0, column=1, padx=2, sticky="ew")
+
+        self.use_synth_btn = ctk.CTkButton(
+            synth_buttons_frame,
+            text="Use Filling",
+            command=self.on_use_synth_click,
+            fg_color="gray30",
+            hover_color="gray45",
+            state="disabled",
+            height=30
+        )
+        self.use_synth_btn.grid(row=0, column=2, padx=2, sticky="ew")
 
         # Buttons Grid
         buttons_frame = ctk.CTkFrame(left_panel, fg_color="transparent")
