@@ -310,6 +310,11 @@ class BrowserController:
             entry_id = None
             try:
                 data_params = container.get_attribute("data-params")
+                if not data_params:
+                    child_with_params = container.query_selector('[data-params]')
+                    if child_with_params:
+                        data_params = child_with_params.get_attribute("data-params")
+                        
                 if data_params:
                     match = re.search(r'\[\[(\d+),', data_params)
                     if match:
@@ -1019,7 +1024,7 @@ class BrowserController:
             response_url = response_url.rstrip('/') + '/formResponse'
         return response_url
 
-    def submit_form_via_post(self, url, parsed_record, mapper, questions, use_dummy_data=True, config_dummy_data=None):
+    def submit_form_via_post(self, url, parsed_record, mapper, questions, template=None, use_dummy_data=True, config_dummy_data=None):
         """Option 4: Performs direct URL-encoded HTTP POST submissions to bypass Playwright completely."""
         import urllib.request
         import urllib.parse
@@ -1027,7 +1032,7 @@ class BrowserController:
         config_dummy_data = config_dummy_data or {}
         
         # 1. Map fields
-        mapped, unmapped, missing_req = mapper.map_fields(parsed_record, questions, None)
+        mapped, unmapped, missing_req = mapper.map_fields(parsed_record, questions, template)
         
         # 2. Build URL POST payload
         payload = []

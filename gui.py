@@ -736,6 +736,7 @@ class XanrieApp(ctk.CTk):
                         parsed_record=parsed_record,
                         mapper=self.mapper,
                         questions=self.detected_questions,
+                        template=self.current_template,
                         use_dummy_data=self.dummy_data_switch.get(),
                         config_dummy_data=self.config.get("dummy_data", {})
                     )
