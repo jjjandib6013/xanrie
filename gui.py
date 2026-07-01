@@ -163,7 +163,7 @@ class XanrieApp(ctk.CTk):
         city_label = ctk.CTkLabel(synthetic_frame, text="Cebu City/Municipality:")
         city_label.grid(row=1, column=0, sticky="w", padx=10, pady=2)
         cities = [
-            "Random", "Cebu City", "Lapu-Lapu City", "Mandaue City", "Talisay City", 
+            "Random", "University of Cebu - Lapu-Lapu and Mandaue", "Cebu City", "Lapu-Lapu City", "Mandaue City", "Talisay City", 
             "Consolacion", "Minglanilla", "Cordova", "Carcar City", "Danao City", 
             "Toledo City", "Naga City", "Liloan", "Compostela", "Balamban", "Bogo City"
         ]

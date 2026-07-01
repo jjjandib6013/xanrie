@@ -3,6 +3,37 @@ import re
 import json
 import os
 
+def choose_centered_linear(items):
+    """Selects an item from a list using a centered linear (triangular) weighting strategy."""
+    if not items:
+        return None
+    n = len(items)
+    if n == 1:
+        return items[0]
+    center = (n - 1) / 2
+    weights = [center - abs(i - center) + 1 for i in range(n)]
+    return random.choices(items, weights=weights, k=1)[0]
+
+def filter_other_options(options):
+    """Filters out options that represent an 'Other' choice (case-insensitive).
+    Supports both English ('Other', 'Others') and Filipino ('Iba pa', 'Iba', 'Iba po', etc.).
+    """
+    if not options:
+        return options
+    other_patterns_filipino = ["iba pa", "iba po", "kung iba", "ibang sagot", "iba, pakisulat", "iba (pakisulat", "iba, itukoy"]
+    def is_other(opt):
+        lower = opt.lower().strip().rstrip(":….")
+        # Exact or near-exact match for short standalone options
+        if lower in ("iba", "other", "others", "iba pa", "iba po"):
+            return True
+        # Word-boundary match for English 'other' to avoid false positives like 'Mother'
+        import re
+        if re.search(r'\bother\b', lower):
+            return True
+        return any(p in lower for p in other_patterns_filipino)
+    filtered = [opt for opt in options if not is_other(opt)]
+    return filtered if filtered else options
+
 # Fictional names pools (Cebuano/Filipino context)
 FIRST_NAMES_MALE = [
     "Juan Miguel", "Jose Mari", "Mark Gil", "Junjun", "Dexter", "John Paul", "Carlo", "Ramon", 
@@ -94,10 +125,28 @@ def generate_synthetic_record(scanned_questions, selected_city="Random", selecte
     """
     record = {}
     
+    # Resolve city and location data first to allow name overrides
+    city = selected_city
+    if city == "Random":
+        city = random.choice(list(CEBU_DATASET.keys()))
+        
+    city_data = CEBU_DATASET.get(city, CEBU_DATASET["Cebu City"])
+    
     # 1. Profile parameters
     gender = random.choice(["Male", "Female"])
-    first_name = random.choice(FIRST_NAMES_MALE) if gender == "Male" else random.choice(FIRST_NAMES_FEMALE)
-    last_name = random.choice(LAST_NAMES)
+    
+    # Check for generalized location name overrides
+    loc_first_male = city_data.get("student_first_names_male")
+    loc_first_female = city_data.get("student_first_names_female")
+    loc_last = city_data.get("student_last_names")
+    
+    if loc_last and ((gender == "Male" and loc_first_male) or (gender == "Female" and loc_first_female)):
+        first_name = random.choice(loc_first_male) if gender == "Male" else random.choice(loc_first_female)
+        last_name = random.choice(loc_last)
+    else:
+        first_name = random.choice(FIRST_NAMES_MALE) if gender == "Male" else random.choice(FIRST_NAMES_FEMALE)
+        last_name = random.choice(LAST_NAMES)
+        
     middle_initial = random.choice(["A.", "B.", "C.", "D.", "E.", "M.", "P.", "S.", "T.", "V."])
     
     full_name = f"{last_name}, {first_name} {middle_initial}"
@@ -105,12 +154,6 @@ def generate_synthetic_record(scanned_questions, selected_city="Random", selecte
     email = f"{email_user}@example.com"
     
     # Set localized variables
-    city = selected_city
-    if city == "Random":
-        city = random.choice(list(CEBU_DATASET.keys()))
-        
-    city_data = CEBU_DATASET.get(city, CEBU_DATASET["Cebu City"])
-    
     barangay = selected_barangay
     if barangay == "Random":
         barangay = random.choice(city_data["sample_barangays"])
@@ -146,6 +189,7 @@ def generate_synthetic_record(scanned_questions, selected_city="Random", selecte
         
         # Priority: Option-based fields (Must pick a valid option)
         if q_type in ["multiple_choice", "dropdown", "checkbox"] and options:
+            options = filter_other_options(options)
             if "gender" in label_lower or "sex" in label_lower:
                 matched = None
                 for opt in options:
@@ -155,7 +199,7 @@ def generate_synthetic_record(scanned_questions, selected_city="Random", selecte
                 record[label] = matched if matched else options[0]
                 
             elif "age" in label_lower:
-                record[label] = random.choice(options)
+                record[label] = choose_centered_linear(options)
                 
             elif "strand" in label_lower or "shs" in label_lower:
                 record[label] = random.choice(options)
@@ -236,7 +280,7 @@ def generate_synthetic_record(scanned_questions, selected_city="Random", selecte
             elif "section" in label_lower or "class" in label_lower:
                 record[label] = section
             elif "age" in label_lower:
-                record[label] = str(random.choice(AGES))
+                record[label] = str(choose_centered_linear(AGES))
             elif "phone" in label_lower or "mobile" in label_lower or "contact" in label_lower:
                 record[label] = f"0917{random.randint(1000000, 9999999)}"
             elif "student id" in label_lower or "id number" in label_lower or "student no" in label_lower:

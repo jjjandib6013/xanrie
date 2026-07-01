@@ -23,6 +23,40 @@ def fetch_html(url):
         print(f"Error fetching {url}: {e}")
         return None
 
+UCLM_LOCATION = "University of Cebu - Lapu-Lapu and Mandaue"
+UCLM_URL = "https://en.wikipedia.org/wiki/University_of_Cebu"
+
+def build_uclm_student_name_pool():
+    """Compiles a synthetic, generic pool of current student first names and last names
+    for UCLM to ensure privacy and avoid real-person identification.
+    No live student lists or celebrity alumni names are used.
+    """
+    first_names_male = [
+        "Juan Miguel", "Jose Mari", "Mark Gil", "Junjun", "Dexter", "John Paul", "Carlo", "Ramon",
+        "Kenneth", "Christian", "Reynaldo", "Alvin", "Michael", "Francis", "Jomar", "Sherwin",
+        "Edgardo", "Melvin", "Gerald", "Jerome", "Aldrin", "Alexander", "Arnel", "Bryan",
+        "Daniel", "Danilo", "Dennis", "Eduardo", "Eric", "Gary", "Jeffrey", "Jonathan",
+        "Julius", "Leo", "Noel", "Patrick", "Romeo"
+    ]
+    
+    first_names_female = [
+        "Maria Clara", "Rhea Mae", "Angelica", "Mary Joy", "Kassandra", "Christine", "Sarah", "Jonalyn",
+        "Michelle", "Princess", "Cherry", "Gwendolyn", "Irish", "Kimberly", "Lovely", "Rachelle",
+        "Shiela", "Analyn", "Glenda", "Jocelyn", "Katrina", "Patricia", "Liezel", "Therese",
+        "Aida", "Carmen", "Daisy", "Elena", "Elsa", "Grace", "Irene", "Jane", "Janet",
+        "Jenny", "Jessica", "Karen", "Rowena"
+    ]
+    
+    last_names = [
+        "Dela Cruz", "Santos", "Buot", "Bacalso", "Fernandez", "Alcantara", "Cabahug", "Ceniza",
+        "Abella", "Gomez", "Ramos", "Bontuyan", "Villaver", "Suarez", "Tagalog", "Ondoy",
+        "Chan", "Lim", "Go", "Ybañez", "Villamor", "Quisumbing", "Arong", "Ruiz", "Gonzales",
+        "Almendras", "Abellanosa", "Aranas", "Abarquez", "Andrade", "Aquino", "Arellano",
+        "Bacolod", "Bascon", "Baring"
+    ]
+    
+    return sorted(first_names_male), sorted(first_names_female), sorted(last_names)
+
 class BarangayParser(HTMLParser):
     """A simple HTML Parser to extract barangays and schools from Wikipedia pages."""
     def __init__(self):
@@ -154,6 +188,38 @@ def main():
                 
         data[city]["sample_address_format"] = f"{{barangay}}, {city}, Cebu"
             
+    # Merge UCLM location entry
+    uclm_male, uclm_female, uclm_last = build_uclm_student_name_pool()
+    if UCLM_LOCATION not in data:
+        data[UCLM_LOCATION] = {
+            "province": "Cebu",
+            "sample_barangays": [
+                # Mandaue City (campus area + most populated)
+                "Looc, Mandaue City", "Subangdaku, Mandaue City", "Basak, Mandaue City",
+                "Cabancalan, Mandaue City", "Centro, Mandaue City", "Banilad, Mandaue City",
+                "Maguikay, Mandaue City", "Tipolo, Mandaue City", "Cubacub, Mandaue City",
+                "Casuntingan, Mandaue City", "Canduman, Mandaue City", "Paknaan, Mandaue City",
+                # Cebu City (most populated)
+                "Mabolo, Cebu City", "Lahug, Cebu City", "Guadalupe, Cebu City",
+                "Talamban, Cebu City", "Banilad, Cebu City", "Apas, Cebu City",
+                "Labangon, Cebu City", "Pardo, Cebu City", "Tisa, Cebu City",
+                # Lapu-Lapu City (most populated)
+                "Basak, Lapu-Lapu City", "Mactan, Lapu-Lapu City", "Pajo, Lapu-Lapu City",
+                "Pusok, Lapu-Lapu City", "Gun-ob, Lapu-Lapu City", "Bankal, Lapu-Lapu City",
+                # Consolacion (most populated)
+                "Cansaga, Consolacion", "Lamac, Consolacion", "Nangka, Consolacion",
+                "Jugan, Consolacion", "Pitogo, Consolacion",
+                # Liloan (most populated)
+                "Poblacion, Liloan", "Catarman, Liloan", "Yati, Liloan",
+                "Cotcot, Liloan", "Calero, Liloan",
+            ],
+            "sample_schools": ["University of Cebu - Lapu-Lapu and Mandaue"],
+            "sample_address_format": "{barangay}, Cebu"
+        }
+    data[UCLM_LOCATION]["student_first_names_male"] = uclm_male
+    data[UCLM_LOCATION]["student_first_names_female"] = uclm_female
+    data[UCLM_LOCATION]["student_last_names"] = uclm_last
+
     # Save the expanded dataset
     os.makedirs(os.path.dirname(locations_file), exist_ok=True)
     with open(locations_file, "w", encoding="utf-8") as f:

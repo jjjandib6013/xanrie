@@ -2,6 +2,38 @@ import re
 import datetime
 from playwright.sync_api import sync_playwright
 from difflib import get_close_matches, SequenceMatcher
+import random
+
+def choose_centered_linear(items):
+    """Selects an item from a list using a centered linear (triangular) weighting strategy."""
+    if not items:
+        return None
+    n = len(items)
+    if n == 1:
+        return items[0]
+    center = (n - 1) / 2
+    weights = [center - abs(i - center) + 1 for i in range(n)]
+    return random.choices(items, weights=weights, k=1)[0]
+
+def filter_other_options(options):
+    """Filters out options that represent an 'Other' choice (case-insensitive).
+    Supports both English ('Other', 'Others') and Filipino ('Iba pa', 'Iba', 'Iba po', etc.).
+    """
+    if not options:
+        return options
+    other_patterns_filipino = ["iba pa", "iba po", "kung iba", "ibang sagot", "iba, pakisulat", "iba (pakisulat", "iba, itukoy"]
+    def is_other(opt):
+        lower = opt.lower().strip().rstrip(":….")
+        # Exact or near-exact match for short standalone options
+        if lower in ("iba", "other", "others", "iba pa", "iba po"):
+            return True
+        # Word-boundary match for English 'other' to avoid false positives like 'Mother'
+        import re
+        if re.search(r'\bother\b', lower):
+            return True
+        return any(p in lower for p in other_patterns_filipino)
+    filtered = [opt for opt in options if not is_other(opt)]
+    return filtered if filtered else options
 
 class BrowserController:
     def __init__(self, default_timeout=15000, logger=None):
@@ -489,6 +521,15 @@ class BrowserController:
         q_label_lower = question["label"].lower()
         q_type = question["type"]
         options = question.get("options", [])
+        if q_type in ["multiple_choice", "checkbox", "dropdown"] and options:
+            options = filter_other_options(options)
+
+        # Priority 0: Handle age fields using Centered Linear Weighting
+        if "age" in q_label_lower:
+            if q_type in ["multiple_choice", "checkbox", "dropdown"] and options:
+                return choose_centered_linear(options)
+            elif q_type in ["short_answer", "paragraph"]:
+                return str(choose_centered_linear([str(x) for x in range(19, 24)]))
 
         # Priority 1: Match config dummy data keys
         for key, val in config_dummy_data.items():
@@ -743,28 +784,69 @@ class BrowserController:
         # Tiered Container Locating Strategy
         container_loc = None
         
-        # Tier 1: Full text match (ignoring whitespace)
-        loc = self.page.locator('div[role="listitem"]').filter(has_text=q_title_clean).first
-        if loc.count() > 0:
-            container_loc = loc
+        # Helper: Verify heading text inside a candidate container matches our target
+        def _verify_container_heading(candidate):
+            """Returns True if the container's heading text matches q_title_clean."""
+            try:
+                heading = candidate.locator('div[role="heading"]').first
+                if heading.count() > 0:
+                    heading_text = re.sub(r'\s+', ' ', heading.inner_text()).strip()
+                    heading_text = re.sub(r'\s*\*$', '', heading_text).strip()
+                    return heading_text == q_title_clean
+                # Fallback to .M7eMe selector
+                label_el = candidate.locator('.M7eMe').first
+                if label_el.count() > 0:
+                    label_text = re.sub(r'\s+', ' ', label_el.inner_text()).strip()
+                    label_text = re.sub(r'\s*\*$', '', label_text).strip()
+                    return label_text == q_title_clean
+            except Exception:
+                pass
+            return False
+        
+        # Tier 1: Find ALL containers matching has_text and verify heading
+        candidates = self.page.locator('div[role="listitem"]').filter(has_text=q_title_clean)
+        candidate_count = candidates.count()
+        if candidate_count > 0:
+            for i in range(candidate_count):
+                candidate = candidates.nth(i)
+                if _verify_container_heading(candidate):
+                    container_loc = candidate
+                    break
+            # If no heading match found, fall back to first candidate (legacy behavior)
+            if not container_loc and candidate_count == 1:
+                container_loc = candidates.first
             
         # Tier 2: Match the part before any parentheses (e.g. "Name (Last name...)" -> "Name")
         if not container_loc and "(" in q_title_clean:
             prefix = q_title_clean.split("(")[0].strip()
             if len(prefix) >= 3:
-                loc = self.page.locator('div[role="listitem"]').filter(has_text=prefix).first
-                if loc.count() > 0:
-                    container_loc = loc
-                    if self.logger:
+                candidates = self.page.locator('div[role="listitem"]').filter(has_text=prefix)
+                candidate_count = candidates.count()
+                if candidate_count > 0:
+                    for i in range(candidate_count):
+                        candidate = candidates.nth(i)
+                        if _verify_container_heading(candidate):
+                            container_loc = candidate
+                            break
+                    if not container_loc and candidate_count == 1:
+                        container_loc = candidates.first
+                    if container_loc and self.logger:
                         self.logger.info(f"Located container using parenthesis prefix: '{prefix}'")
 
-        # Tier 3: Match by first 15 characters
+        # Tier 3: Match by first 30 characters (increased from 15 for better precision)
         if not container_loc and len(q_title_clean) > 15:
-            short_prefix = q_title_clean[:15].strip()
-            loc = self.page.locator('div[role="listitem"]').filter(has_text=short_prefix).first
-            if loc.count() > 0:
-                container_loc = loc
-                if self.logger:
+            short_prefix = q_title_clean[:min(30, len(q_title_clean))].strip()
+            candidates = self.page.locator('div[role="listitem"]').filter(has_text=short_prefix)
+            candidate_count = candidates.count()
+            if candidate_count > 0:
+                for i in range(candidate_count):
+                    candidate = candidates.nth(i)
+                    if _verify_container_heading(candidate):
+                        container_loc = candidate
+                        break
+                if not container_loc and candidate_count == 1:
+                    container_loc = candidates.first
+                if container_loc and self.logger:
                     self.logger.info(f"Located container using short prefix: '{short_prefix}'")
 
         if not container_loc:
@@ -1089,11 +1171,69 @@ class BrowserController:
                 else:
                     payload.append((entry_id, str(val)))
 
-        # 3. Send HTTP POST
+        # 3. Fetch form HTML to extract hidden fields required for multi-page forms
+        form_url = url.split("?")[0]  # Remove query params
+        if "/viewform" not in form_url:
+            form_url = form_url.rstrip("/") + "/viewform"
+        
+        fbzx_token = ""
+        page_count = 0
+        try:
+            fetch_req = urllib.request.Request(form_url, headers={
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
+            })
+            with urllib.request.urlopen(fetch_req, timeout=15) as resp:
+                form_html = resp.read().decode('utf-8', errors='ignore')
+                
+                # Extract fbzx token
+                fbzx_match = re.search(r'name=["\']fbzx["\'][^>]*value=["\']([^"\']*)["\']', form_html)
+                if fbzx_match:
+                    fbzx_token = fbzx_match.group(1)
+                else:
+                    fbzx_match2 = re.search(r'"fbzx":"([^"]*)"', form_html)
+                    if fbzx_match2:
+                        fbzx_token = fbzx_match2.group(1)
+                
+                # Count total pages by looking for page markers in FB_PUBLIC_LOAD_DATA_
+                # Each page section in the form data indicates a page
+                page_markers = re.findall(r'\[\[(\d+),"[^"]*"', form_html)
+                if page_markers:
+                    # Determine page count from scanned questions
+                    page_numbers = set()
+                    for q in questions:
+                        pn = q.get("page_number", 1)
+                        page_numbers.add(pn)
+                    page_count = max(page_numbers) if page_numbers else 1
+                    
+        except Exception as e:
+            if self.logger:
+                self.logger.info(f"Could not fetch form HTML for hidden fields: {e}")
+        
+        # Build pageHistory: "0,1,2" for a 3-page form (0-indexed)
+        if page_count <= 0:
+            # Fallback: determine from question page numbers
+            page_numbers = set()
+            for q in questions:
+                pn = q.get("page_number", 1)
+                page_numbers.add(pn)
+            page_count = max(page_numbers) if page_numbers else 1
+        
+        page_history = ",".join(str(i) for i in range(page_count))
+        
+        # Add required hidden fields for multi-page form submission
+        payload.append(("fvv", "1"))
+        payload.append(("pageHistory", page_history))
+        if fbzx_token:
+            payload.append(("fbzx", fbzx_token))
+            payload.append(("partialResponse", f'[null,null,"{fbzx_token}"]'))
+        payload.append(("submissionTimestamp", "-1"))
+
+        # 4. Send HTTP POST
         response_url = self.get_form_response_url(url)
         if self.logger:
             self.logger.info(f"Posting directly to {response_url}")
             self.logger.info(f"POST Payload: {payload}")
+            self.logger.info(f"pageHistory: {page_history} | fbzx: {fbzx_token[:20]}..." if fbzx_token else f"pageHistory: {page_history} | fbzx: (none)")
             
         data = urllib.parse.urlencode(payload).encode('utf-8')
         headers = {
@@ -1120,3 +1260,4 @@ class BrowserController:
             if self.logger:
                 self.logger.error(f"HTTP Direct POST failed: {e}")
             raise e
+
